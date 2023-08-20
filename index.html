@@ -807,6 +807,13 @@
                         <span class="content">Privacy Considerations</span></a
                       >
                     </li>
+                    <li>
+                      <a class="tocxref" href="#security-considerations"
+                        ><span class="secno">5.2</span>
+                        <span class="content">Security Considerations</span></a
+                      >
+                    </li>
+
                   </ol>
                 </li>
                 <li class="tocline">
@@ -964,6 +971,7 @@
                       <td>http://www.w3.org/ns/solid/terms#</td>
                       <td>Solid Terms</td>
                     </tr>
+
                     <tr>
                       <td><code>vcard</code></td>
                       <td>http://www.w3.org/2006/vcard/ns#</td>
@@ -975,6 +983,25 @@
                         >]
                       </td>
                     </tr>
+
+                   <tr>
+                      <td><code>schema</code></td>
+                      <td>http://schema.org/</td>
+                      <td>schema.org
+                    
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td><code>meeting</code></td>
+                      <td>http://www.w3.org/ns/pim/meeting#</td>
+                      <td>Meeting ontology
+                    
+                      </td>
+                    </tr>
+
+                    
+
                   </tbody>
                 </table>
               </div>
@@ -1051,7 +1078,8 @@
             </p>
             <p>
             A chat chanel is all built inside a single folder (LDP Container) in a pod.
-            Let us call the URI of that folder <tt>$ROOT</tt>. 
+            Let us call the URI of that folder -- less its final '/' -- <tt>$ROOT</tt>. 
+            It could be say, <tt>https://alice/example.org/Bob/OurChat</tt>
             </p>
             <p>Within that folder, the main channel is normally <tt>$ROOT/index#this</tt></p>
 
@@ -1063,6 +1091,17 @@
 
             <img style="width:80%" src="diagrams/SolidChatShapes.svg" rel="schema:image" alt="Class/Property diagram for Solid Chat"/>
 
+<pre class="example">
+# in $ROOT/index.ttl
+
+@prefix : &lt;#>.
+@prefix dc: &lt;http://purl.org/dc/elements/1.1/>.
+@prefix meeting: &lt;http://www.w3.org/ns/pim/meeting#>.
+
+:this
+    a meeting:LongChat;
+    dc:title "Chat about this example" .
+</pre>
           </section>
 
           <section
@@ -1080,13 +1119,47 @@
                 id="privacy-considerations"
                 inlist=""
                 rel="schema:hasPart"
-                resource="#privacy-considerations"
+                resource="#security-considerations"
               >
-                <h3 property="schema:name">Privacy considerations</h3>
-                <div datatype="rdf:HTML" property="schema:description">
+              <h3 property="schema:name">Security considerations</h3>
+              <div>
+                <h4>Handling Rich Text</h4>
+                <p>
+                  Whenever messages contain rich text in HTML form, or in markdown form which is converted
+                  into HTML and either stored in a pod or displayed in a browser or both,
+                  then great care must be taken to avoid injection attacks.  Any user-provided HTML 
+                  MUST be scrubbed for anything like embeded javascript URLs or the long list of
+                  vulereabilties around injection of code into HTML.
+                  User-generated HTML content MUSt be scrubbed BOTH before being stored and also 
+                  when read from a pod before it is displayed.
+                </p>
+                <h4>Impersonation by unscrupulous users</h4>
+                <p>
+                  It is left to each user to write thier own webid as author of each message.
+                  This is a question of trust, as anyone else in the group with access could
+                  write an app to append a message with a different user's webId. 
+                  There are two ways in which this  is being addressed. One is that digital signature
+                  is used to provide assurance that the sender was indeed the one given in the message.
+                  Another is work on server-side shape filtering in which the writer's identity (and the date) would
+                  be checked or forced by the server.
+                </p>
+              </div>
+              <h3 property="schema:name">Privacy considerations</h3>
+              <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
                   <p>
-                    Privacy considerations have been voiced in the past regarding the visibility of different data types in the Public Type Index Document. One can potentially deduce the type of data a WebID owner possesses on their storage.
+                    Typicaly when a user joins a chat where they allowed to
+                    contribute, then the chat app adds them to th list of partipants.
+                    There partiicpation is captured explicity. 
+                    This is valuable to have the list of participants
+                    but some users might like to opt out and just lurk.
+                    On the other hand, other users might not want
+                    unregistered lurking to be possible.
+
+                  </p>
+                  <p>One useful function of chat software is to capture the partcipants as a group 
+                    and then use that group in other collboartive tools, and in access conrol settings, and so on.
+                  So to join a chat could end up involving you in other opportunities.
                   </p>
                 </div>
                 </section>
