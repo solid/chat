@@ -1034,7 +1034,8 @@
                 </p>
 
                 <p>
-                  Examples in this specification are introduced with the word "for example" or are set apart from the normative text with <code>class="example"</code>, like this:
+                  Examples in this specification are introduced with the word "for example" or
+                  are set apart from the normative text like this:
                 </p>
                   <figure
                     class="example listing"
@@ -1064,7 +1065,7 @@
             rel="schema:hasPart"
             resource="#chat"
           >
-            <h2 property="schema:name">Chat Channel</h2>
+            <h2 property="schema:name">Long Chat Channel</h2>
             <p>
               This document describes the structure of the data in a chat channel,
               which is primarily a set of RDF triples - linked data links.
@@ -1091,7 +1092,10 @@
 
             <img style="width:80%" src="diagrams/SolidChatShapes.svg" rel="schema:image" alt="Class/Property diagram for Solid Chat"/>
 
-<pre class="example">
+            <p class="example-h">
+              <span>A simple Long Chat instance</span>
+            </p>
+            <pre class="example">
 # in $ROOT/index.ttl
 
 @prefix : &lt;#>.
@@ -1102,6 +1106,54 @@
     a meeting:LongChat;
     dc:title "Chat about this example" .
 </pre>
+          </section>
+
+          <section>
+            <h2 property="schema:name">Chat Message</h2>
+
+            <p>Here is an example message:</p>
+            <pre class=""example">
+              :message95487593
+                    dct:created "2023-02-20T21:36:09Z"^^xsd:dateTime;
+                    sioc:content """Hello world!""";
+                    foaf:maker &lt;../../../../../Person/timbl-54d26c98db8155e6700f7312%3Agitter.im/index.ttl#this>.
+            </pre>
+            @@
+          </section>
+
+          <section>
+            <h2 property="schema:name">Threads and Replies</h2>
+            @@
+            https://timbl.com/timbl/Public/Archive/solid/chat-app/2023/02/20/chat.ttl#8a4hxwxSNaNTb5bv6oTCswcBNW7zvXc8inaoBWBM9Ro
+
+          </section>
+
+          <section>
+            <h2 property="schema:name">Deleted and Modified Messages</h2>
+            @@
+          </section>
+
+          <section>
+            <h2 property="schema:name">Actions</h2>
+            @@
+          </section>
+          <section>
+            <h2 property="schema:name">Preferences</h2>
+            <p>User prefernces for chat allow many things to be changed in how messages are presnted 
+              to the user.  Each preferences option can be set in each of three separate places, which take 
+              precedece in priority order.
+
+            </p>
+          <ol>
+            <li>If set, the user's preference for this chat channel.</li>
+            <li>Failing that, then the chat owner's preference for this chat channel</li>
+            <li>Faling that, the user's personal preferences for chat channels everywhere</li>
+            <li>Faling that, the UX designer of the app.</li>
+          </ol>
+
+<p>(One can imagine future chat clients requiring different again prefernece options
+   -- say voice and speed for a voice based client.)</p>
+            @@
           </section>
 
           <section
@@ -1162,7 +1214,10 @@
                   So to join a chat could end up involving you in other opportunities.
                   </p>
                 </div>
-                </section>
+                <h3 property="schema:name">Internationization considerations</h3>
+                <p>Should there be an option for laying out the chat with left and right reversed?</p>
+                
+              </section>
             </div>
           </section>
         
