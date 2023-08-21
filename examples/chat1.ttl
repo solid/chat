@@ -14,6 +14,7 @@
     sioc:content "N1 another thread reply to A in the thread EDITED";
     sioc:id <matrix:///e/2Bw5IeK9IeHnVNtzkOgAovUFix49JaociYdTO6G-F3w>;
     foaf:maker n2:this.
+
 :8a4hxwxSNaNTb5bv6oTCswcBNW7zvXc8inaoBWBM9Ro
     dct:created "2023-02-20T21:36:09Z"^^xsd:dateTime;
     sioc:content
@@ -23,6 +24,7 @@ B a reply to A""";
     sioc:has_reply :GVu4AdmzBFnQvuLRvX0e8wc6oNOPdV0ki_qcJjDdbzk;
     sioc:id <matrix:///e/8a4hxwxSNaNTb5bv6oTCswcBNW7zvXc8inaoBWBM9Ro>;
     foaf:maker n2:this.
+
 :bqp11ZmhhAGmwXLt8evvjyoI4Z8vs08agOqcdA0fy6A
     dct:created "2023-02-20T21:36:40Z"^^xsd:dateTime;
     sioc:content
@@ -32,11 +34,13 @@ B a reply to A""";
     sioc:has_reply :8a4hxwxSNaNTb5bv6oTCswcBNW7zvXc8inaoBWBM9Ro;
     sioc:id <matrix:///e/bqp11ZmhhAGmwXLt8evvjyoI4Z8vs08agOqcdA0fy6A>;
     foaf:maker n2:this.
+
 :FtmPJ0s6ezS4qCjisqqkqux1nAuSU7QnZrxQNBfwHSQ
     dct:created "2023-02-20T21:37:59Z"^^xsd:dateTime;
     sioc:content "O another message in the thread";
     sioc:id <matrix:///e/FtmPJ0s6ezS4qCjisqqkqux1nAuSU7QnZrxQNBfwHSQ>;
     foaf:maker n2:this.
+    
 :GVu4AdmzBFnQvuLRvX0e8wc6oNOPdV0ki_qcJjDdbzk
     dct:created "2023-02-20T21:35:54Z"^^xsd:dateTime;
     dct:isReplacedBy ch:E6aFyaxMid9OajRNSCx3IL4Wc7nqIX-qLhXLj9HN2Wc;
