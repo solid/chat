@@ -203,7 +203,7 @@
     <main>
       <article about="" typeof="schema:Article doap:Specification">
         <h1 property="schema:name">Solid Chat</h1>
-        <h2>Version <span property="doap:revision">1.0.0</span>, Editor’s Draft, 2023-03-13</h2>
+        <h2>Version <span property="doap:revision">1.0.0</span>, Editor’s Draft, 2023-08-21</h2>
 
         <details open="">
           <summary>More details about this document</summary>
@@ -466,8 +466,8 @@
                     <dd>
                       <a
                         rel="odrl:assigner"
-                        href="https://www.w3.org/community/solid/"
-                        >W3C Solid Community Group</a
+                        href="https://github.com/solid/"
+                        >Solid Organization</a
                       >
                     </dd>
                     <dt>Action</dt>
@@ -637,10 +637,9 @@
         </details>
 
         <p class="copyright">
-          MIT License. Copyright © 2022
-          <a href="http://www.w3.org/community/solid/"
-            >W3C Solid Community Group</a
-          >.
+          MIT License. Copyright © 2022-2023
+          <a href="http://github.com/solid/"
+          >Solid Organization</a>.
         </p>
 
         <div datatype="rdf:HTML" id="content" property="schema:description">
@@ -751,65 +750,53 @@
                   </ol>
                 </li>
                 <li class="tocline">
-                  <a href="#chat"
+                  <a href="#channel"
                     ><span class="secno">2</span>
-                    <span class="content">Solid Chat</span></a
-                  >
-                  <ol>
-                    <li>
-                      <a class="tocxref" href="#public-type-index"
-                        ><span class="secno">2.1</span>
-                        <span class="content">Public Type Index</span></a
-                      >
-                    </li>
-                    <li>
-                      <a href="#private-type-index"
-                        ><span class="secno">2.2</span>
-                        <span class="content">Private Type Index </span></a
-                      >
-                    </li>
-
-                    <li>
-                      <a href="#type-index-registration-entries"
-                        ><span class="secno">2.3</span>
-                        <span class="content"
-                          >Type Index Registration Entries
-                        </span></a
-                      >
-                    </li>
-                  </ol>
-                </li>
-                <li>
-                  <a href="#supplying-missing-type-index-documents">
-                    <span class="secno">3</span>
-                    <span class="content"
-                      >Supplying missing Type Index documents
-                    </span></a
-                  >
-                </li>
-                <li>
-                  <a href="#community">
-                    <span class="secno">4</span>
-                    <span class="content"
-                      >Community
-                    </span></a
-                  >
+                    <span class="content">Chat Channel</span></a>                
                 </li>
                 <li class="tocline">
-                  <a href="#considerations"
+                  <a href="#message"
+                    ><span class="secno">3</span>
+                    <span class="content">Chat Message</span></a>                
+                </li>
+                <li class="tocline">
+                  <a href="#threads"
+                    ><span class="secno">4</span>
+                    <span class="content">Threads and Replies</span></a>                
+                </li>
+                <li class="tocline">
+                  <a href="#deleted"
                     ><span class="secno">5</span>
+                    <span class="content">Deleted and Modified Messages</span></a>                
+                </li>
+    
+                <li class="tocline">
+                  <a href="#actions"
+                    ><span class="secno">6</span>
+                    <span class="content">Actions</span></a>                
+                </li>
+                <li class="tocline">
+                  <a href="#prefernces"
+                    ><span class="secno">7</span>
+                    <span class="content">Preferencees</span></a>                
+                </li>
+
+
+                <li class="tocline">
+                  <a href="#considerations"
+                    ><span class="secno">8</span>
                     <span class="content">Considerations</span></a
                   >
                   <ol>
                     <li>
                       <a class="tocxref" href="#privacy-considerations"
-                        ><span class="secno">5.1</span>
+                        ><span class="secno">8.1</span>
                         <span class="content">Privacy Considerations</span></a
                       >
                     </li>
                     <li>
                       <a class="tocxref" href="#security-considerations"
-                        ><span class="secno">5.2</span>
+                        ><span class="secno">8.2</span>
                         <span class="content">Security Considerations</span></a
                       >
                     </li>
@@ -987,8 +974,7 @@
                    <tr>
                       <td><code>schema</code></td>
                       <td>http://schema.org/</td>
-                      <td>schema.org
-                    
+                      <td>schema.org                 
                       </td>
                     </tr>
 
@@ -996,11 +982,15 @@
                       <td><code>meeting</code></td>
                       <td>http://www.w3.org/ns/pim/meeting#</td>
                       <td>Meeting ontology
-                    
                       </td>
                     </tr>
 
-                    
+                    <tr>
+                      <td><code>wf</code></td>
+                      <td>http://www.w3.org/2005/01/wf/flow#</td>
+                      <td>Workflow ontology
+                      </td>
+                    </tr>
 
                   </tbody>
                 </table>
@@ -1081,6 +1071,10 @@
             A chat chanel is all built inside a single folder (LDP Container) in a pod.
             Let us call the URI of that folder -- less its final '/' -- <tt>$ROOT</tt>. 
             It could be say, <tt>https://alice/example.org/Bob/OurChat</tt>
+            Developers must never make asumptions about where a chat is
+            stored as chats are used within other apps (such as issue trackers and meetings) 
+            which create the container for them.
+
             </p>
             <p>Within that folder, the main channel is normally <tt>$ROOT/index#this</tt></p>
 
@@ -1135,6 +1129,16 @@
 
           <section>
             <h2 property="schema:name">Actions</h2>
+            <p>A person responds with a social action (like "like") on an existing message
+              by writing the action into the same chat file as the message. </p>
+              <pre class="example">
+                <#action0876> schema:agent <https://bob.example.com/profile/card#me> ;
+                              a schema:AgreeAction ;
+                              <http://schema.org/target> <#Msg1677678647433> .
+\              </pre>
+            <p>The schema ontology has a few standard forms of action.  Thos should be converted intro
+              appropriate symbols or icons by the cllient.</p>
+              <p>An emoji may also be given in the content of the action.</p>
             @@
           </section>
           <section>
@@ -1431,6 +1435,8 @@
             </div>
           </section>
         </div>
+
+
       </article>
     </main>
 
