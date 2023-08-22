@@ -1089,29 +1089,71 @@
             <p class="example-h">
               <span>A simple Long Chat instance</span>
             </p>
-            <pre class="example">
-# in $ROOT/index.ttl
 
-@prefix : &lt;#>.
-@prefix dc: &lt;http://purl.org/dc/elements/1.1/>.
-@prefix meeting: &lt;http://www.w3.org/ns/pim/meeting#>.
+            <figure
+            class="example listing"
+            id="channelExample"
+            rel="schema:hasPart"
+            resource="#channelExample"
+          >
+            <p class="example-h">
+              <span>A simple Long Chat instance</span>
+            </p>
+            <pre
+              about="#example"
+              property="schema:description"
+              typeof="fabio:Script"
+            >
+              <code>
+                # in $ROOT/index.ttl
 
-:this
-    a meeting:LongChat;
-    dc:title "Chat about this example" .
-</pre>
+                @prefix : &lt;#>.
+                @prefix dc: &lt;http://purl.org/dc/elements/1.1/>.
+                @prefix meeting: &lt;http://www.w3.org/ns/pim/meeting#>.
+                
+                :this
+                    a meeting:LongChat;
+                    dc:title "Chat about this example" .
+              </code>
+            </pre>
+          </figure>
+
           </section>
 
           <section>
             <h2 property="schema:name">Chat Message</h2>
 
             <p>Here is an example message:</p>
-            <pre class="example">
-              :message95487593
-                    dct:created "2023-02-20T21:36:09Z"^^xsd:dateTime;
-                    sioc:content """Hello world!""";
-                    foaf:maker &lt;../../../../../Person/timbl-54d26c98db8155e6700f7312%3Agitter.im/index.ttl#this>.
+
+            <figure
+            class="example listing"
+            id="examplemessage"
+            rel="schema:hasPart"
+            resource="#examplemessage"
+          >
+            <p class="example-h">
+              <span>An example message</span>
+            </p>
+            <pre
+              about="#example"
+              property="schema:description"
+              typeof="fabio:Script"
+            >
+              <code>
+                <../../../index.ttl#this> meeting:message :message95487593 .
+            :message95487593
+                dct:created "2023-02-20T21:36:09Z"^^xsd:dateTime;
+                sioc:content """Hello world!""";
+                foaf:maker &lt;../../../../../Person/timbl-54d26c98db8155e6700f7312%3Agitter.im/index.ttl#this>.
+</code>
             </pre>
+          </figure>
+          <p class="note">Note that each message does not have an explicit type.  This is just to save storage.
+            It does have, in the chat file, a <code>meeting:message</code>link from the channel to the message.
+            In the shapes, we use the class <tt>schema:Message</tt> but while there was also <tt>sioc:Post</tt>, nothing
+            we could find seemed to capture Chat Message perfectly.
+
+          </p>
             @@
           </section>
 
@@ -1135,9 +1177,17 @@
                 <#action0876> schema:agent <https://bob.example.com/profile/card#me> ;
                               a schema:AgreeAction ;
                               <http://schema.org/target> <#Msg1677678647433> .
-\              </pre>
+              </pre>
             <p>The schema ontology has a few standard forms of action.  Thos should be converted intro
               appropriate symbols or icons by the cllient.</p>
+
+              <table>
+                <tr><th>Subclass of Action</th><th>Typical Emoji</th></tr>
+                <tr><td>AgreeAction</td><td>👍</td></tr>
+                <tr><td>DisagreeAction</td><td>👎</td></tr>
+                <tr><td>EndorseAction</td><td>⭐️</td></tr>
+                <tr><td>LikeAction</td><td>❤️</td></tr>
+              </table>
               <p>An emoji may also be given in the content of the action.</p>
             @@
           </section>

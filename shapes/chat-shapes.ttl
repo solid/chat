@@ -1,0 +1,83 @@
+# Shapes for Solid Chat
+
+# Platform ontologies:
+
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# Domain ontologies
+
+@prefix dc: <http://purl.org/dc/elements/1.1/>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix meeting: <http://www.w3.org/ns/pim/meeting#>.
+@prefix schema: <http://schema.org/>.
+@prefix sioc: <http://rdfs.org/sioc/ns#>.
+@prefix wf: <http://www.w3.org/2005/01/wf/flow#>.
+
+
+@prefix : <#>. 
+
+
+
+<> dct:title "SHACL shapes for Solid Chat".
+
+
+:LongChatShape
+	a sh:NodeShape ;
+	sh:targetClass meeting:LongChat ;
+  # sh: targetObjectsOf vcard:member;  # No can be other things
+  sh:closed false ; # @
+  sh:ignoredProperties ();
+  sh:property [
+		sh:path rdf:type ;
+        sh:value vcard:LongChat;
+        sh:count 1;
+	]  ;
+
+sh:property [
+		sh:path dct:title ;
+    sh:message "A chat channel must have a title.";
+        sh:datatype xsd:string;
+        sh:count 1;
+	]  . 
+
+:MessageShape a  sh:NodeShape;
+    sh:targetClass schema:Message;
+  sh:closed false ; # different message systems may have all kinds of metadata 
+
+  sh:property [
+		sh:path dct:created ;
+    sh:message "A chat message must have a creation date.";
+        sh:datatype xsd:dateTime; # Must be UTC
+
+        sh:count 1;
+	];
+
+  sh:property [
+		sh:path sioc:contents ;
+    sh:message "A chat message must have a contents.";
+        sh:datatype xsd:string;
+
+        sh:count 1;
+	];
+
+  sh:property [
+		sh:path foaf:maker ;
+        sh:message "A chat message must have a creator.";
+        sh:count 1;
+	];
+
+  sh:property [
+		sh:path [ sh:inverse meeting:maker ] ;
+        sh:message "A chat message should know its chat channel."; # @@ what about threads though
+        sh:maxCount 1;
+        sh:dataType meeting:LongChat;
+
+	] .
+
+
+
