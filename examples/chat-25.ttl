@@ -1,0 +1,92 @@
+@prefix : <#>.
+@prefix dct: <http://purl.org/dc/terms/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix schema: <http://schema.org/>.
+@prefix sioc: <http://rdfs.org/sioc/ns#>.
+@prefix wf: <http://www.w3.org/2005/01/wf/flow#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix ch: <../20/chat.ttl#>.
+@prefix n4: <../../../index.ttl#>.
+@prefix ind: <../../../../../Person/timbl-54d26c98db8155e6700f7312%3Agitter.im/index.ttl#>.
+@prefix inde: <../../../../../Person/jboi%3Ajboi.nl/index.ttl#>.
+
+ch:2Bw5IeK9IeHnVNtzkOgAovUFix49JaociYdTO6G-F3w
+dct:isReplacedBy :xJXNxZXvuph1OdysyC0Is_9cX2IKmKgN5xxCbnWjW-k.
+ch:GVu4AdmzBFnQvuLRvX0e8wc6oNOPdV0ki_qcJjDdbzk
+dct:isReplacedBy :E6aFyaxMid9OajRNSCx3IL4Wc7nqIX-qLhXLj9HN2Wc.
+ch:GVu4AdmzBFnQvuLRvX0e8wc6oNOPdV0ki_qcJjDdbzk-thread
+sioc:has_member :tYDpio1b09O_JlXJ-KEgdLXNhc235bq32PkPNB_hou0 .
+:47vi3j5ixcwDTMYevX6VepZoq_DKhLlNaf4SR4mJmqQ
+    dct:created "2023-02-25T17:06:18Z"^^xsd:dateTime;
+    sioc:content
+        " * You guessed ... nowI look at the logs of the bridge and figure out whether replies are linked to the original or the edited version of the message. And stuff like that.";
+    sioc:id <matrix:///e/47vi3j5ixcwDTMYevX6VepZoq_DKhLlNaf4SR4mJmqQ>;
+    foaf:maker ind:this.
+
+:bNGquK6W8jCsnw1OPgjHl6GcHSvidMR9rD8nH1MjePs
+    dct:created "2023-02-25T16:57:52Z"^^xsd:dateTime;
+    sioc:content "are you testing matrix threading edgecases?";
+    sioc:id <matrix:///e/bNGquK6W8jCsnw1OPgjHl6GcHSvidMR9rD8nH1MjePs>;
+    foaf:maker inde:this.
+
+:DI0tRhwu8HMb_SXqeZi1JYZUq9qFdaFawQn7c63h5vE
+    dct:created "2023-02-25T16:55:27Z"^^xsd:dateTime;
+    sioc:content
+        """> <@timbl-54d26c98db8155e6700f7312:gitter.im> A1 - root message in the main chat EDITED
+
+Reply D to A1 edited""";
+    sioc:has_reply ch:GVu4AdmzBFnQvuLRvX0e8wc6oNOPdV0ki_qcJjDdbzk;
+    sioc:id <matrix:///e/DI0tRhwu8HMb_SXqeZi1JYZUq9qFdaFawQn7c63h5vE>;
+    foaf:maker ind:this.
+:dkh5E9ey4Yenlm2ShF3hjrEUWCslq11h3J23WplLxkw
+    dct:created "2023-02-25T18:35:42Z"^^xsd:dateTime;
+    sioc:content
+        "threads and replies are basically just normal messages with spicy relations, i could fetch you the relevant matrix spec for it, if you'd want";
+    sioc:id <matrix:///e/dkh5E9ey4Yenlm2ShF3hjrEUWCslq11h3J23WplLxkw>;
+    foaf:maker inde:this.
+    
+:E6aFyaxMid9OajRNSCx3IL4Wc7nqIX-qLhXLj9HN2Wc
+    dct:created "2023-02-25T14:02:51Z"^^xsd:dateTime;
+    sioc:content " * A1 - root message in the main chat EDITED";
+    sioc:id <matrix:///e/E6aFyaxMid9OajRNSCx3IL4Wc7nqIX-qLhXLj9HN2Wc>;
+    foaf:maker ind:this.
+    
+:Fg8kuMf9tpfJYS5RlFqDUYSk1p4hdti0lt485fAoz3Q
+    dct:created "2023-02-25T17:23:32Z"^^xsd:dateTime;
+    sioc:content
+        "This is what the solid version is looks likee.  Deleteed messages were already a thing in Solid Chat, but threads and replies were not. https://www.w3.org/DesignIssues/diagrams/solid/SolidChatShapes.svg";
+    sioc:id <matrix:///e/Fg8kuMf9tpfJYS5RlFqDUYSk1p4hdti0lt485fAoz3Q>;
+    foaf:maker ind:this.
+:tYDpio1b09O_JlXJ-KEgdLXNhc235bq32PkPNB_hou0
+    dct:created "2023-02-25T16:53:12Z"^^xsd:dateTime;
+    sioc:content "P reply to edited message A1";
+    sioc:id <matrix:///e/tYDpio1b09O_JlXJ-KEgdLXNhc235bq32PkPNB_hou0>;
+    foaf:maker ind:this.
+:WtTwCZpRfDeVN4SaEbZxG_zpVTBWK5JoLHdm4LSphXQ-action
+    a schema:AgreeAction;
+    sioc:content "\ud83d\udc4d\ufe0f";
+    schema:agent inde:this;
+    schema:target :xAfhX5A91l5Kc7ezoXr3KwQXhXcUfuYl4xlVgFp-J5k.
+:xAfhX5A91l5Kc7ezoXr3KwQXhXcUfuYl4xlVgFp-J5k
+    dct:created "2023-02-25T17:04:18Z"^^xsd:dateTime;
+    dct:isReplacedBy :47vi3j5ixcwDTMYevX6VepZoq_DKhLlNaf4SR4mJmqQ;
+    sioc:content
+        "You guessed ... nowI look at the logs of the bridge and figure out whether replies are linked to the original or the edited version of the message. And stuff like that.";
+    sioc:id <matrix:///e/xAfhX5A91l5Kc7ezoXr3KwQXhXcUfuYl4xlVgFp-J5k>;
+    foaf:maker ind:this.
+:xJXNxZXvuph1OdysyC0Is_9cX2IKmKgN5xxCbnWjW-k
+    dct:created "2023-02-25T16:53:58Z"^^xsd:dateTime;
+    sioc:content " * N1 another thread reply to A in the thread EDITED";
+    sioc:id <matrix:///e/xJXNxZXvuph1OdysyC0Is_9cX2IKmKgN5xxCbnWjW-k>;
+    foaf:maker ind:this.
+n4:this
+    wf:message
+        :47vi3j5ixcwDTMYevX6VepZoq_DKhLlNaf4SR4mJmqQ,
+        :bNGquK6W8jCsnw1OPgjHl6GcHSvidMR9rD8nH1MjePs,
+        :DI0tRhwu8HMb_SXqeZi1JYZUq9qFdaFawQn7c63h5vE,
+        :dkh5E9ey4Yenlm2ShF3hjrEUWCslq11h3J23WplLxkw,
+        :E6aFyaxMid9OajRNSCx3IL4Wc7nqIX-qLhXLj9HN2Wc,
+        :Fg8kuMf9tpfJYS5RlFqDUYSk1p4hdti0lt485fAoz3Q,
+        :tYDpio1b09O_JlXJ-KEgdLXNhc235bq32PkPNB_hou0,
+        :xAfhX5A91l5Kc7ezoXr3KwQXhXcUfuYl4xlVgFp-J5k,
+        :xJXNxZXvuph1OdysyC0Is_9cX2IKmKgN5xxCbnWjW-k.
