@@ -1,3 +1,5 @@
-# Chat client-to-client specification work
+# Chat client-to-client specification
 
-This repository tracks the work about a Solid Chat specification.
+This repository has the draft [Solid Chat specification](https://solid.github.io/chat/).
+
+

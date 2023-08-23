@@ -1159,8 +1159,71 @@
 
           <section>
             <h2 property="schema:name">Threads and Replies</h2>
+
+            <p>Example of a thread:</p>
+            <figure
+            class="example listing"
+            id="examplethread"
+            rel="schema:hasPart"
+            resource="#examplethread"
+          >
+            <p class="example-h">
+              <span>An example thrad</span>
+            </p>
+            <pre
+              about="#example"
+              property="schema:description"
+              typeof="fabio:Script"
+            >
+              <code>
+                :GVu4AdmzBFnQvuLRvX0e8wc6oNOPdV0ki_qcJjDdbzk-thread
+                a sioc:Thread;
+                sioc:has_member
+                    :2Bw5IeK9IeHnVNtzkOgAovUFix49JaociYdTO6G-F3w,
+                    :FtmPJ0s6ezS4qCjisqqkqux1nAuSU7QnZrxQNBfwHSQ,
+                    :Uf6jIvxd_j4l6JwWGke9rpLCPeQXHFVKWVWiJ2mmR_Q,
+                    ch:tYDpio1b09O_JlXJ-KEgdLXNhc235bq32PkPNB_hou0 .
+</code>
+            </pre>
+          </figure>
+<p>In general, a thread is a stucture which must match this shape.
+  It is stored in the same chat file as the message
+  which is the first member of the thread.
+  The member messages in the thread are sorted by the creation date.
+</p>
+          <figure
+          class="shape listing"
+          id="threadshape"
+          rel="schema:hasPart"
+          resource="#examplethread"
+        >
+          <p class="example-h">
+            <span>Thread shape</span>
+          </p>
+          <pre
+            about="#threadshape"
+            property="schema:description"
+            typeof="fabio:Script"
+          >
+            <code>
+              :ThreadShape a sh:NodeShape;
+              sh:targetClass sioc:Thread;
+                sh:property [
+              sh:path rdf:type ;
+                  sh:value sioc:Thread;
+                  sh:count 1;
+            ]  ;
+            sh:property [
+              sh:path sioc:has_member ;
+                  sh:dataType schema:Message;
+                  sh:message "A thread must have a member or members.";
+                  sh:minCount 1;
+            ] .</code>
+          </pre>
+        </figure>
+<p>When a thread membership link connects a thread and a message on different day files, the link
+  is repeated in both files so that it can be followed eiter way. </p>
             @@
-            https://timbl.com/timbl/Public/Archive/solid/chat-app/2023/02/20/chat.ttl#8a4hxwxSNaNTb5bv6oTCswcBNW7zvXc8inaoBWBM9Ro
 
           </section>
 
@@ -1174,9 +1237,9 @@
             <p>A person responds with a social action (like "like") on an existing message
               by writing the action into the same chat file as the message. </p>
               <pre class="example">
-                <#action0876> schema:agent <https://bob.example.com/profile/card#me> ;
+                &lt;#action0876> schema:agent &lt;https://bob.example.com/profile/card#me> ;
                               a schema:AgreeAction ;
-                              <http://schema.org/target> <#Msg1677678647433> .
+                              &lt;http://schema.org/target> &lt;#Msg1677678647433> .
               </pre>
             <p>The schema ontology has a few standard forms of action.  Thos should be converted intro
               appropriate symbols or icons by the cllient.</p>
@@ -1188,7 +1251,7 @@
                 <tr><td>EndorseAction</td><td>⭐️</td></tr>
                 <tr><td>LikeAction</td><td>❤️</td></tr>
               </table>
-              <p>An emoji may also be given in the content of the action.</p>
+              <p>An emoji may also be given in the sioc:content of the action.</p>
             @@
           </section>
           <section>

@@ -29,7 +29,7 @@
 :LongChatShape
 	a sh:NodeShape ;
 	sh:targetClass meeting:LongChat ;
-  # sh: targetObjectsOf vcard:member;  # No can be other things
+  sh: targetSubjectsOf meeeting:message;  # No can be other things
   sh:closed false ; # @
   sh:ignoredProperties ();
   sh:property [
@@ -47,11 +47,13 @@ sh:property [
 
 :MessageShape a  sh:NodeShape;
     sh:targetClass schema:Message;
-  sh:closed false ; # different message systems may have all kinds of metadata 
+    sh: targetObjectsOf meeeting:message;  # No can be other things
 
-  sh:property [
+    sh:closed false ; # different message systems may have all kinds of metadata 
+
+    sh:property [
 		sh:path dct:created ;
-    sh:message "A chat message must have a creation date.";
+        sh:message "A chat message must have a creation date.";
         sh:datatype xsd:dateTime; # Must be UTC
 
         sh:count 1;
@@ -78,6 +80,22 @@ sh:property [
         sh:dataType meeting:LongChat;
 
 	] .
+
+:ThreadShape a sh:NodeShape;
+    sh:targetClass sioc:Thread;
+      sh:property [
+		sh:path rdf:type ;
+        sh:value sioc:Thread;
+        sh:count 1;
+	]  ;
+  sh:property [
+		sh:path sioc:has_member ;
+        sh:dataType schema:Message;
+        sh:message "A thread must have a member or members.";
+        sh:minCount 1;
+	] .
+
+# ENDS
 
 
 
