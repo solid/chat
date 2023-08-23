@@ -48,6 +48,7 @@ B a reply to A""";
     sioc:has_reply :GVu4AdmzBFnQvuLRvX0e8wc6oNOPdV0ki_qcJjDdbzk-thread;
     sioc:id <matrix:///e/GVu4AdmzBFnQvuLRvX0e8wc6oNOPdV0ki_qcJjDdbzk>;
     foaf:maker n2:this.
+    
 :GVu4AdmzBFnQvuLRvX0e8wc6oNOPdV0ki_qcJjDdbzk-thread
     a sioc:Thread;
     sioc:has_member

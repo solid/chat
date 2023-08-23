@@ -1172,7 +1172,7 @@
             resource="#examplethread"
           >
             <p class="example-h">
-              <span>An example thrad</span>
+              <span>An example thread</span>
             </p>
             <pre
               about="#example"
@@ -1233,9 +1233,52 @@
 
           <section>
             <h2 property="schema:name">Deleted and Modified Messages</h2>
+            <p>When a message is deleted or modified, the original is not in fact removed from the store. 
+              It instead marked as deleted, or linked by <code>dct:isReplacedBy</code> to a new version of the message.
+               The UI is resonsible for 
+              showing the newest version, or supressing the display.
+            </p>
+            <p>When the original and replacment messages are in different chat files, then the 
+              <code>dct:isReplacedBy</code> triple must be written to both.
+            </p>
+
+            <figure
+            class="example listing"
+            id="modifiedexample"
+            rel="schema:hasPart"
+            resource="#modifiedexample"
+          >
+            <p class="example-h">
+              <span>An example edited message</span>
+            </p>
+            <pre
+              about="#modifiedexample"
+              property="schema:description"
+              typeof="fabio:Script"
+            >
+              <code>
+# in 20/chat.ttl :
+
+      :GVu4AdmzBFnQvuLRvX0e8wc6oNOPdV0ki_qcJjDdbzk
+            dct:created "2023-02-20T21:35:54Z"^^xsd:dateTime;
+            dct:isReplacedBy ch:E6aFyaxMid9OajRNSCx3IL4Wc7nqIX-qLhXLj9HN2Wc;
+            sioc:content "A1 - root message in the main chat";
+            foaf:maker n2:this.
+        
+# in 25/chat.ttl :
+
+      :E6aFyaxMid9OajRNSCx3IL4Wc7nqIX-qLhXLj9HN2Wc
+            dct:created "2023-02-25T14:02:51Z"^^xsd:dateTime;
+            sioc:content " * A1 - root message in the main chat EDITED";
+            foaf:maker n2:this.
+
+</code>
+            </pre>
+          </figure>            
+
+
             @@
           </section>
-
           <section>
             <h2 property="schema:name">Actions</h2>
             <p>A person responds with a social action (like "like") on an existing message
