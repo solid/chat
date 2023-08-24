@@ -21,20 +21,17 @@
 
 @prefix : <#>. 
 
-
-
 <> dct:title "SHACL shapes for Solid Chat".
-
 
 :LongChatShape
 	a sh:NodeShape ;
 	sh:targetClass meeting:LongChat ;
-  sh: targetSubjectsOf meeeting:message;  # No can be other things
-  sh:closed false ; # @
+  sh: targetSubjectsOf meeeting:message; 
+  sh:closed false ; 
   sh:ignoredProperties ();
   sh:property [
 		sh:path rdf:type ;
-        sh:value vcard:LongChat;
+        sh:value meeting:LongChat;
         sh:count 1;
 	]  ;
 
@@ -43,7 +40,19 @@ sh:property [
     sh:message "A chat channel must have a title.";
         sh:datatype xsd:string;
         sh:count 1;
-	]  . 
+	], 
+
+    [ sh:path ui:sharedPreferences ;
+     sh:count 1 ],
+
+  [ sh:path  flow:participation ;
+    sh:minCount 0 ] ,
+
+  [ sh:path dc:author ;
+    sh:datatype foaf:Agent;
+    sh:maxCount 1 ] .
+
+############ Messages
 
 :MessageShape a  sh:NodeShape;
     sh:targetClass schema:Message;
@@ -107,6 +116,112 @@ sh:property [
         sh:message "A thread must have a member or members.";
         sh:minCount 1;
 	] .
+
+########## Actions express sentiments
+
+:ActionShape a sh:NodeShape;
+ sh:targetSubjectsOf schema:target;
+
+ sh:property [
+   sh:path rdf:type;   # object Must be subclass of schema:Action or schema:Action itself if an emoj is given
+   sh:count 1;
+ ];
+ sh:property [
+   sh:path schema:agent;
+   sh:count 1;
+ ];
+ sh:property [
+   sh:path sioc:contents;
+   sh:datatype xsd:string;
+   sh:maxCount 1;
+ ];
+ sh:property [
+   sh:path schema:target;
+   sh:count 1;
+ ] .
+
+
+
+################ Shared Preferences
+
+:SharedPreferencesShape a sh:NodeShape;
+    sh:targetObjectsOf ui:sharedPreferences;
+
+    sh:property [
+      sh:path  solid:expandImagesInline;
+      sh:datatype xsd:boolean;
+      sh:maxCount 1;
+    ];
+
+    sh:property [
+      sh:path  solid:inlineImageHeightEms;
+      sh:datatype xsd:integer;
+      sh:minCount 0;
+      sh:maxCount 1;
+    ];
+
+    sh:property [
+      sh:path  solid:newestFirst;
+      sh:datatype xsd:boolean;
+      sh:minCount 0;
+      sh:maxCount 1;
+    ] .
+
+
+
+################ Participation objects
+
+:ParticpationShape a sh:NodeShape;
+    sh:targetObjectsOf flow:participation;
+
+    sh:property [
+      sh:path ical:dtstart;
+      sh:datatype xsd:dateTime;
+      sh:count 1;
+    ];
+
+    sh:property [
+      sh:path flow:participant;
+      sh:count 1;
+    ];
+
+   # Particpants can stored their personal preferences for this chat
+
+    sh:property [
+      sh:path  solid:colorizeByAuthor;
+      sh:datatype xsd:boolean;
+      sh:maxCount 1;
+    ];
+
+    sh:property [
+      sh:path  solid:expandImagesInline;
+      sh:datatype xsd:boolean;
+      sh:maxCount 1;
+    ];
+
+    sh:property [
+      sh:path  solid:inlineImageHeightEms;
+      sh:datatype xsd:integer;
+      sh:minCount 0;
+      sh:maxCount 1;
+    ];
+
+    sh:property [
+      sh:path  solid:newestFirst;
+      sh:datatype xsd:boolean;
+      sh:minCount 0;
+      sh:maxCount 1;
+    ];
+
+    sh:property [
+      sh:path  ui:backgroundColor;
+      sh:minCount 0;
+      sh:maxCount 1;
+      sh:datatype xsd:string;
+      sh:pattern "#[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f]" ;
+    ];
+    .
+
 
 # ENDS
 
