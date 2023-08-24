@@ -263,7 +263,6 @@
               >
             </dd>
 
-
             <dd id="Timea-Turdean">
               <span about="" rel="schema:editor schema:author"
                 ><span about="https://timea.solidcommunity.net/profile/card#me" typeof="schema:Person"
@@ -1144,7 +1143,7 @@
             :message95487593
                 dct:created "2023-02-20T21:36:09Z"^^xsd:dateTime;
                 sioc:content """Hello world!""";
-                foaf:maker &lt;../../../../../Person/timbl-54d26c98db8155e6700f7312%3Agitter.im/index.ttl#this>.
+                foaf:maker &lt;../../../../../Person/alice-54d26c98db8155e6700f7312%3Agitter.im/index.ttl#this>.
 </code>
             </pre>
           </figure>
@@ -1154,6 +1153,66 @@
             we could find seemed to capture Chat Message perfectly.
 
           </p>
+<p>Here is a shape a chat message must match:</p>
+
+<figure class="shape listing" id="messageshape" rel="schema:hasPart" resource="#messageshape">
+<p class="example-h">
+  <span>Message shape</span>
+</p>
+<pre about="#messageshape" property="schema:description" typeof="fabio:Script">
+  <code>
+:MessageShape a  sh:NodeShape;
+    sh:targetClass schema:Message;
+    sh:targetObjectsOf meeeting:message;  # No can be other things
+    sh:closed false ; # different message systems may have all kinds of metadata 
+
+    sh:property [
+		sh:path dct:created ;
+        sh:message "A chat message must have a creation date.";
+        sh:datatype xsd:dateTime; # Must be UTC
+
+        sh:count 1;
+	];
+
+  sh:property [
+		sh:path sioc:contents ;
+        sh:message "A chat message must have a contents.";
+        sh:datatype xsd:string;
+
+        sh:count 1;
+	];
+
+  sh:property [
+		sh:path foaf:maker ;
+        sh:message "A chat message must have one creator.";
+        sh:count 1;
+	];
+  sh:property [
+		sh:path dct:isReplacedBy ;
+        sh:message "A chat message can only have one replacement.";
+        dh:dataType schema:Message;
+        sh:maxCount 1;
+	];
+ 
+  sh:property [
+		sh:path schema:dateDeleted ;
+        sh:message "A chat message can only have one deletion date.";
+        dh:dataType xsd:dateTime;
+        sh:maxCount 1;
+	];
+
+  sh:property [
+		sh:path [ sh:inverse meeting:message ] ;
+        sh:message "A chat message should know its chat channel."; # @@ what about threads though
+        sh:maxCount 1;
+        sh:dataType meeting:LongChat;
+
+	] .  </code>
+</pre>
+</figure>
+
+
+
             @@
           </section>
 
@@ -1239,7 +1298,7 @@
               showing the newest version, or supressing the display.
             </p>
             <p>When the original and replacment messages are in different chat files, then the 
-              <code>dct:isReplacedBy</code> triple must be written to both.
+              <code>dct:isReplacedBy</code> triple should be written to just the document of the original message.
             </p>
 
             <figure
@@ -1275,6 +1334,48 @@
 </code>
             </pre>
           </figure>            
+<p>When a message is deleted, it is replaced by a message which is marked as deleted with a
+   <code>dateDeleted</code> property. For example:</p>
+
+<figure
+class="example listing"
+id="deletedexample"
+rel="schema:hasPart"
+resource="#deletedexample"
+>
+<p class="example-h">
+  <span>An example edited message</span>
+</p>
+<pre
+  about="#deletedexample"
+  property="schema:description"
+  typeof="fabio:Script"
+>
+  <code>
+@prefix c22: <https://alice.example.net/profile/card#>.
+@prefix n6: <../../../index.ttl#>.
+
+:Msg1692883560076
+    dct:created "2023-08-24T13:26:00Z"^^xsd:dateTime;
+    dct:isReplacedBy :Msg1692883677430;
+    sioc:content "24th - looking at deleted messages";
+    foaf:maker c22:me.
+
+:Msg1692883677430
+    dct:created "2023-08-24T13:27:57Z"^^xsd:dateTime;
+    sioc:content "(message deleted)";
+    schema:dateDeleted "2023-08-24T13:27:57Z"^^xsd:dateTime;
+    foaf:maker c22:me.
+
+n6:this wf:message :Msg1692883560076 .
+</code>
+</pre>
+</figure>            
+<p class="note">Note that the form of a deletion is such that an implementation which knows about replacement 
+but does not know about <code>schema:dateDeleted</code> will do the right thing if
+the content of the deletion messge is something like "(message deleted)".</p>
+
+
 
 
             @@

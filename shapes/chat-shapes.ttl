@@ -75,9 +75,17 @@ sh:property [
   sh:property [
 		sh:path dct:isReplacedBy ;
         sh:message "A chat message can only have one replacement.";
+        dh:dataType schema:Message;
         sh:maxCount 1;
 	];
  
+  sh:property [
+		sh:path schema:dateDeleted ;
+        sh:message "A chat message can only have one deletion date.";
+        dh:dataType xsd:dateTime;
+        sh:maxCount 1;
+	];
+
   sh:property [
 		sh:path [ sh:inverse meeting:message ] ;
         sh:message "A chat message should know its chat channel."; # @@ what about threads though
