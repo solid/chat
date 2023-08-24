@@ -1261,32 +1261,38 @@
                   typeof="fabio:Script"
                 >
                   <code>
-:HxuJZPg18me8iX8sB18Nb2Oo9ObJwMLS7GRoJUfDV_Y
-    dct:created "2023-08-24T20:49:02Z"^^xsd:dateTime;
-    sioc:content
-        """> <@timbl-54d26c98db8155e6700f7312:gitter.im> Looking at has_reply issue.
-
-Normal reply to this should be done right""";
-    sioc:id <matrix:///e/HxuJZPg18me8iX8sB18Nb2Oo9ObJwMLS7GRoJUfDV_Y>;
-    foaf:maker ind:this.
-
 :YclVtjeT3mfFu-bD-XKbsKpRsaPaEW_7JCQVBEOCWvY
     dct:created "2023-08-24T20:48:32Z"^^xsd:dateTime;
     sioc:content "Looking at has_reply issue.";
     sioc:has_reply :HxuJZPg18me8iX8sB18Nb2Oo9ObJwMLS7GRoJUfDV_Y;
     sioc:id <matrix:///e/YclVtjeT3mfFu-bD-XKbsKpRsaPaEW_7JCQVBEOCWvY>;
     foaf:maker ind:this.
-n4:this
-    wf:message
+
+:HxuJZPg18me8iX8sB18Nb2Oo9ObJwMLS7GRoJUfDV_Y
+    dct:created "2023-08-24T20:49:02Z"^^xsd:dateTime;
+    sioc:content
+        """> <@alice:example.com> Looking at has_reply issue.
+Normal reply to this should be done right""";
+    sioc:id <matrix:///e/HxuJZPg18me8iX8sB18Nb2Oo9ObJwMLS7GRoJUfDV_Y>;
+    foaf:maker ind:this.
+
+n4:this wf:message
         :HxuJZPg18me8iX8sB18Nb2Oo9ObJwMLS7GRoJUfDV_Y,
         :YclVtjeT3mfFu-bD-XKbsKpRsaPaEW_7JCQVBEOCWvY.
 </code>
                 </pre>
               </figure>
     
+              <p class="note">
+                Note that in that example was converted from a Matrix message.
+                The matrix client has added a quoted part of the message being replied to. 
+                Normal Solid clients should not do that, but should leave to the client UX to make it clear which message it is a reply to.
+                Which could be positionng on the screen, could have an overlapped shadow endering of that message, for example.
+                This could also be in future a (receiving) user preferece.
+              </p>
 
 
-            <p>Example of a thread:</p>
+            <p>By contrast, here is an example of a thread:</p>
             <figure
             class="example listing"
             id="examplethread"
