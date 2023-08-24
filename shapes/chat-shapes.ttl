@@ -49,7 +49,7 @@ sh:property [
     sh:minCount 0 ] ,
 
   [ sh:path dc:author ;
-    sh:datatype foaf:Agent;
+    sh:class foaf:Agent;
     sh:maxCount 1 ] .
 
 ############ Messages
@@ -88,10 +88,17 @@ sh:property [
         sh:maxCount 1;
 	];
  
+   sh:property [
+		sh:path sioc:has_reply ;
+        sh:message "A chat message can only have many replies.";
+        sh:class schema:Message; # or thread @@@
+        sh:minCount 0;
+	];
+
   sh:property [
 		sh:path schema:dateDeleted ;
         sh:message "A chat message can only have one deletion date.";
-        dh:dataType xsd:dateTime;
+        sh:dataType xsd:dateTime;
         sh:maxCount 1;
 	];
 
@@ -99,7 +106,7 @@ sh:property [
 		sh:path [ sh:inverse meeting:message ] ;
         sh:message "A chat message should know its chat channel."; # @@ what about threads though
         sh:maxCount 1;
-        sh:dataType meeting:LongChat;
+        sh:class meeting:LongChat;
 
 	] .
 
@@ -112,7 +119,7 @@ sh:property [
 	]  ;
   sh:property [
 		sh:path sioc:has_member ;
-        sh:dataType schema:Message;
+        sh:class schema:Message;
         sh:message "A thread must have a member or members.";
         sh:minCount 1;
 	] .

@@ -1071,10 +1071,10 @@
           </section>
 
           <section id="channel" inlist="" rel="schema:hasPart" resource="#channel">
-            <h2 property="schema:name">Long Chat Channel</h2>
+            <h2 property="schema:name">Chat Channel</h2>
             <p>
               This document describes the structure of the data in a chat channel,
-              the root class of which is <code>LongChat</code>.
+              the main class of which is <code>LongChat</code>.
               The chat data is a set of RDF triples - linked data links.
               It also suggests and sometimes requires specific URIs to be used for different structure.
               When reading a chat chanbel, where there are links, those must  be followed, 
@@ -1084,14 +1084,14 @@
             </p>
             <p>
             A chat chanel is all built inside a single folder (LDP Container) in a pod.
-            Let us call the URI of that folder -- less its final '/' -- <tt>$ROOT</tt>. 
-            It could be say, <tt>https://alice/example.org/Bob/OurChat</tt>
+            Let us call the URI of that folder -- less its final '/' -- <code>$ROOT</code>. 
+            It could be say, <code>https://alice/example.org/Bob/OurChat</code>
             Developers must never make asumptions about where a chat channel is
             stored as chats are used within other apps (such as issue trackers and meetings) 
             which create the container for them.
 
             </p>
-            <p>Within that folder, the main channel is normally <tt>$ROOT/index#this</tt></p>
+            <p>Within that folder, the main channel is normally <code>$ROOT/index#this</code></p>
 
             <pre notation="turtle">
 
@@ -1165,7 +1165,7 @@
           </figure>
           <p class="note">Note that each message does not have an explicit type.  This is just to save storage.
             It does have, in the chat file, a <code>meeting:message</code>link from the channel to the message.
-            In the shapes, we use the class <tt>schema:Message</tt> but while there was also <tt>sioc:Post</tt>, nothing
+            In the shapes, we use the class <code>schema:Message</code> but while there was also <code>sioc:Post</code>, nothing
             we could find seemed to capture Chat Message perfectly.
           </p>
 <p>Here is a shape a chat message must match:</p>
@@ -1218,7 +1218,7 @@
 
   sh:property [
 		sh:path [ sh:inverse meeting:message ] ;
-        sh:message "A chat message should know its chat channel."; # @@ what about threads though
+        sh:message "A chat message should know its chat channel.";
         sh:maxCount 1;
         sh:dataType meeting:LongChat;
 
@@ -1226,7 +1226,17 @@
 </pre>
 </figure>
 
+<p>The use of the properties of a message are as follows.</p>
 
+<table><tr><th>Message Property</th><th>Use</th></tr>
+  <tr><td>dct:created</td><td>Mandaory UTC datetime the message is sent.</td></tr>
+  <tr><td>foaf:maker</td><td>Mandatory WebID of the message sender</td></tr>
+  <tr><td>sioc:contents</td><td>Mandatory unicode text of the message contents.</td></tr>
+  <tr><td>dct:isReplacedBy</td><td>Message editing is discussed below</td></tr>
+  <tr><td>schema:dateDeleted</td><td>Message deletion is discussed below</td></tr>
+  <tr><td>sioc:has_reply</td><td>Replies and threads are discussed below</td></tr>
+  <tr><td>Reverse meeting:message</td><td>Points from the chat channel to the message</td></tr>
+</table>
 
             @@
           </section>
