@@ -647,11 +647,11 @@
             <div datatype="rdf:HTML" property="schema:abstract">
               A Solid chat channel is a object in a Solid pod which allows
               a series of text (or multimedia) messages over time to be 
-              accumulated as an interactive discossion beetween one or more people (or other agents)
-              Chat messages are written directly by the parcipants into a series of chat files
-              organized by date. Partipants watch the current chat file for updates in real time 
+              accumulated as an interactive discussion between one or more people (or other agents)
+              Chat messages are written directly by the participants into a series of chat files
+              organized by date. Participants watch the current chat file for updates in real time
               using Solid Live Update functionality.
-              A chat chanell may also have  justt one author, in which case 
+              A chat channel may also have  just one author, in which case
               it can function as a private "note to self" or as public or shared stream of thoughts.
               This format is designed to be able to interoperate with existing chat systems like
               Internet Relay Chat, Matrix, etc. The original version did not include threads or replies,
@@ -858,7 +858,7 @@
                   of chat protocols like IRC channels and Matrix rooms, and like 
                   platforms like Slack, WhatsApp chat, and so on.
                   Anyone can host a chat on their pod, and invite others to join.
-                  Those who are allowed to particpate in the chanel are given
+                  Those who are allowed to participate in the channel are given
                   Append mode access to a part of the pod where they can create 
                   new chat files and add messages to existing ones.
                   Deletion and modification of messages are done not by changing 
@@ -1047,21 +1047,21 @@
               </div>
             </section>
             <section>
-              <h3 property="schema:name">Breif History</h3>
+              <h3 property="schema:name">Brief History</h3>
               <p>On the W3C website, Internet Relay Chat (IRC) logs have been stored in RDF form, for example
                  by RRSAgent, for many many years.  The pre-Solid SWAP and Tabulator projects at MIT/CSAIL and collaborators
                  made a chat system which used the read/write/live aspects of the data stores they were developing
                  to make two forms of chat. One (ShortChat) was a simple chat in which all the messages
                   were stored in the same resource.
                   The other was a chat channel which stored 
-                 data in YYYY/MM/DD dated subfolders much like directly writing a log of an IRC chanel.
+                 data in YYYY/MM/DD dated subfolders much like directly writing a log of an IRC channel.
                  The SolidOS project adopted both of these, but it was felt that difference between them
-                 was not helpful, and the short chat should be dropped in favour of the long chat.
-                 The LongChat implementation functionality included mesage deletion and editing, but not replies or threads.
-                 It was used to store a pod-based refernce copy of the giiter chats around which a lot of the  
+                 was not helpful, and the short chat should be dropped in favor of the long chat.
+                 The LongChat implementation functionality included message deletion and editing, but not replies or threads.
+                 It was used to store a pod-based reference copy of the Gitter chats around which a lot of the
                  open source collaborative world revolved. This used a gateway which imported Solid chat from the Gitter API.
-                 Other chat implemntations at that time included Jackson Morgan's liqidChat.
-                 In time Gitter abandonned their API and switched to the Matrix protocol, which is a common chat protocol.
+                 Other chat implementations at that time included Jackson Morgan's liqidChat.
+                 In time Gitter abandoned their API and switched to the Matrix protocol, which is a common chat protocol.
                  The Solid community then switched the <a href="https://github.com/solid-contrib/gitter-solid">gateway</a> to the Matrix protocol.
                    Meanwhile, Matrix were adding threads to their system,
                  and so at that stage both the gateway and the SolidOS client implementation were updated to support threads.
@@ -1077,16 +1077,16 @@
               the main class of which is <code>LongChat</code>.
               The chat data is a set of RDF triples - linked data links.
               It also suggests and sometimes requires specific URIs to be used for different structure.
-              When reading a chat chanbel, where there are links, those must  be followed, 
-              and no asumptions made about the URIs.
-              An exception is the YYYY/MM/DD date strcture for day chat files,
+              When reading a chat channel, where there are links, those must  be followed,
+              and no assumptions made about the URIs.
+              An exception is the YYYY/MM/DD date structure for day chat files,
               where the URI must be created from the UTC date of the message.
             </p>
             <p>
-            A chat chanel is all built inside a single folder (LDP Container) in a pod.
+            A chat channel is all built inside a single folder (LDP Container) in a pod.
             Let us call the URI of that folder -- less its final '/' -- <code>$ROOT</code>. 
             It could be say, <code>https://alice/example.org/Bob/OurChat</code>
-            Developers must never make asumptions about where a chat channel is
+            Developers must never make assumptions about where a chat channel is
             stored as chats are used within other apps (such as issue trackers and meetings) 
             which create the container for them.
 
@@ -1229,7 +1229,7 @@
 <p>The use of the properties of a message are as follows.</p>
 
 <table><tr><th>Message Property</th><th>Use</th></tr>
-  <tr><td>dct:created</td><td>Mandaory UTC datetime the message is sent.</td></tr>
+  <tr><td>dct:created</td><td>Mandatory UTC datetime the message is sent.</td></tr>
   <tr><td>foaf:maker</td><td>Mandatory WebID of the message sender</td></tr>
   <tr><td>sioc:contents</td><td>Mandatory unicode text of the message contents.</td></tr>
   <tr><td>dct:isReplacedBy</td><td>Message editing is discussed below</td></tr>
@@ -1297,8 +1297,8 @@ n4:this wf:message
                 Note that in that example was converted from a Matrix message.
                 The matrix client has added a quoted part of the message being replied to. 
                 Normal Solid clients should not do that, but should leave to the client UX to make it clear which message it is a reply to.
-                Which could be positionng on the screen, could have an overlapped shadow endering of that message, for example.
-                This could also be in future a (receiving) user preferece.
+                Which could be positioning on the screen, could have an overlapped shadow rendering of that message, for example.
+                This could also be in future a (receiving) user preference.
               </p>
 
 
@@ -1328,7 +1328,7 @@ n4:this wf:message
 </code>
             </pre>
           </figure>
-<p>In general, a thread is a stucture which must match this shape.
+<p>In general, a thread is a structure which must match this shape.
   It is stored in the same chat file as the message
   which is the first member of the thread.
   The member messages in the thread are sorted by the creation date.
@@ -1364,7 +1364,7 @@ n4:this wf:message
           </pre>
         </figure>
 <p>When a thread membership link connects a thread and a message on different day files, the link
-  is repeated in both files so that it can be followed eiter way. </p>
+  is repeated in both files so that it can be followed either way. </p>
             @@
 
           </section>
@@ -1373,10 +1373,10 @@ n4:this wf:message
             <h2 property="schema:name">Deleted and Modified Messages</h2>
             <p>When a message is deleted or modified, the original is not in fact removed from the store. 
               It instead marked as deleted, or linked by <code>dct:isReplacedBy</code> to a new version of the message.
-               The UI is resonsible for 
-              showing the newest version, or supressing the display.
+               The UI is responsible for
+              showing the newest version, or suppressing the display.
             </p>
-            <p>When the original and replacment messages are in different chat files, then the 
+            <p>When the original and replacement messages are in different chat files, then the
               <code>dct:isReplacedBy</code> triple should be written to just the document of the original message.
             </p>
 
@@ -1452,7 +1452,7 @@ n6:this wf:message :Msg1692883560076 .
 </figure>            
 <p class="note">Note that the form of a deletion is such that an implementation which knows about replacement 
 but does not know about <code>schema:dateDeleted</code> will do the right thing if
-the content of the deletion messge is something like "(message deleted)".</p>
+the content of the deletion message is something like "(message deleted)".</p>
 
 <p>Edited messages may be further edited, as shown in the diagram.</p>
 <p>Edited messages may be deleted.  Deleted messaged may <strong>not</strong> be edited.</p>
@@ -1467,8 +1467,8 @@ the content of the deletion messge is something like "(message deleted)".</p>
                               a schema:AgreeAction ;
                               &lt;http://schema.org/target> &lt;#Msg1677678647433> .
               </pre>
-            <p>The schema ontology has a few standard forms of action.  Thos should be converted intro
-              appropriate symbols or icons by the cllient.</p>
+            <p>The schema ontology has a few standard forms of action.  Those should be converted into
+              appropriate symbols or icons by the client.</p>
 
               <table>
                 <tr><th>Subclass of Action</th><th>Typical Emoji</th></tr>
@@ -1481,26 +1481,26 @@ the content of the deletion messge is something like "(message deleted)".</p>
               <p> 
                 When an application uses an emoji to represent the Action, then if the content is given,
                 and it is a single valid emoji should be used.
-                Otherwise an emjoi can be made as one appropriate to the given subclass of Action,
+                Otherwise an emoji can be made as one appropriate to the given subclass of Action,
                 as in the table above.</p>
             @@
           </section>
           <section id="preferences" inlist="" rel="schema:hasPart" resource="#preferences">
             <h2 property="schema:name">Preferences</h2>
-            <p>User prefernces for chat allow many things
-               to be changed in how messages are presnted 
+            <p>User preferences for chat allow many things
+               to be changed in how messages are presented
               to the user.  Each preferences option can
                be set in each of three separate places, which take 
-              precedece in priority order.
+              precedence in priority order.
             </p>
           <ol>
             <li>If set, the user's preference for this chat channel.</li>
             <li>Failing that, then the chat owner's preference for this chat channel</li>
-            <li>Faling that, the user's personal preferences for chat channels everywhere</li>
-            <li>Faling that, the UX designer of the app.</li>
+            <li>Failing that, the user's personal preferences for chat channels everywhere</li>
+            <li>Failing that, the UX designer of the app.</li>
           </ol>
 
-<p>(One can imagine future chat clients requiring different again prefernece options
+<p>(One can imagine future chat clients requiring different again preference options
    -- say voice and speed for a voice based client.)</p>
 
 
@@ -1547,10 +1547,10 @@ resource="#preferencesExample"
 
  <table><tr><th>Preferences property</th><th>Effect</th><th>default</th></tr>
   <tr><td>solid:newestFirst</td><td>Messages are displayed with the most recent at the top of the display</td><td>False</td></tr>
-  <tr><td>solid:colorizeByAuthor</td><td>Make the background color of each message be different for author. As specfied by the author's preference, or by hashing their webid.</td></tr>
+  <tr><td>solid:colorizeByAuthor</td><td>Make the background color of each message be different for author. As specified by the author's preference, or by hashing their webid.</td></tr>
   <tr><td>solid:expandImagesInline</td><td>Expand images inline</td><td>True</td></tr>
-  <tr><td>solid:inlineImageHeightEms</td><td>If images are expanded inline, then their height in Ems</td><td>Implentation dependent</td></tr>
-  <tr><td>ui:backgroundColor</td><td>When messages are colours by the user sending them, this is the color for this user.</td><td>Implentation dependent</td></tr>
+  <tr><td>solid:inlineImageHeightEms</td><td>If images are expanded inline, then their height in Ems</td><td>Implementation dependent</td></tr>
+  <tr><td>ui:backgroundColor</td><td>When messages are colors by the user sending them, this is the color for this user.</td><td>Implementation dependent</td></tr>
 </table>
 
 
@@ -1581,14 +1581,14 @@ resource="#preferencesExample"
                   Whenever messages contain rich text in HTML form, or in markdown form which is converted
                   into HTML and either stored in a pod or displayed in a browser or both,
                   then great care must be taken to avoid injection attacks.  Any user-provided HTML 
-                  MUST be scrubbed for anything like embeded javascript URLs or the long list of
-                  vulereabilties around injection of code into HTML.
+                  MUST be scrubbed for anything like embedded javascript URLs or the long list of
+                  vulnerabilities around injection of code into HTML.
                   User-generated HTML content MUSt be scrubbed BOTH before being stored and also 
                   when read from a pod before it is displayed.
                 </p>
                 <h4>Impersonation by unscrupulous users</h4>
                 <p>
-                  It is left to each user to write thier own webid as author of each message.
+                  It is left to each user to write their own webid as author of each message.
                   This is a question of trust, as anyone else in the group with access could
                   write an app to append a message with a different user's webId. 
                   There are two ways in which this  is being addressed. One is that digital signature
@@ -1601,21 +1601,21 @@ resource="#preferencesExample"
               <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
                   <p>
-                    Typicaly when a user joins a chat where they allowed to
-                    contribute, then the chat app adds them to th list of partipants.
-                    There partiicpation is captured explicity. 
+                    Typically when a user joins a chat where they allowed to
+                    contribute, then the chat app adds them to th list of participants.
+                    There participation is captured explicitly.
                     This is valuable to have the list of participants
                     but some users might like to opt out and just lurk.
                     On the other hand, other users might not want
                     unregistered lurking to be possible.
 
                   </p>
-                  <p>One useful function of chat software is to capture the partcipants as a group 
-                    and then use that group in other collboartive tools, and in access conrol settings, and so on.
+                  <p>One useful function of chat software is to capture the participants as a group
+                    and then use that group in other collaborative tools, and in access control settings, and so on.
                   So to join a chat could end up involving you in other opportunities.
                   </p>
                 </div>
-                <h3 property="schema:name">Internationization considerations</h3>
+                <h3 property="schema:name">Internationalization considerations</h3>
                 <p>Should there be an option for laying out the chat with left and right reversed?</p>
                 
               </section>
