@@ -899,29 +899,18 @@
 
                 <dl rel="skos:hasTopConcept">
                   <dt
-                    about="#storage"
-                    property="skos:prefLabel"
-                    typeof="skos:Concept"
-                  >Storage</dt>
-                  <dd>
-                    A <dfn id="storage">storage</dfn> is a space of URIs that affords agents controlled access to resources.
-                  </dd>
-                  <dt
                     about="#webid"
                     property="skos:prefLabel"
                     typeof="skos:Concept"
                   >WebID</dt>
                   <dd>
-                    A <dfn id="webid">WebID</dfn> is a URI with an HTTP or HTTPS scheme which denotes an Agent (Person, Organization, Group, Device, etc.). For WebIDs with fragment identifiers (e.g. #me), the URI without the fragment denotes the Profile Document. For WebIDs without fragment identifiers an HTTP request on the WebID MUST return a 303 with a Location header URI referring to the Profile Document.
+                    A <dfn id="webid">WebID</dfn> is a URI with an HTTP or HTTPS scheme which denotes an Agent
+                     (Person, Organization, Group, Device, etc.). For WebIDs with fragment identifiers (e.g. #me), 
+                     the URI without the fragment denotes the Profile Document.
+                      For WebIDs without fragment identifiers an HTTP request on the WebID MUST 
+                      return a 303 with a Location header URI referring to the Profile Document.
                   </dd>
-                  <dt 
-                    about="#webid-profile" 
-                    property="skos:definition"
-                    typeof="skos:Concept"
-                  >WebID Profile</dt>
-                  <dd>
-                    A <dfn>WebID Profile</dfn> is an RDF document which uniquely describes the Agent denoted by the WebID in relation to that WebID. The server MUST provide a text/turtle <a href="#bib-turtle">[turtle]</a> representation of the requested profile. This document MAY be available in other RDF serialization formats, such as RDFa <a href="#bib-rdfa-core">[RDFA-CORE]</a>, or <a href="#bib-RDF-SYNTAX-GRAMMAR">[RDF-SYNTAX-GRAMMAR]</a> if so requested through content negotiation. 
-                  </dd>
+                
                 </dl>
 
               </div>
