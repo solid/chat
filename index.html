@@ -774,16 +774,22 @@
                     ><span class="secno">6</span>
                     <span class="content">Actions</span></a>                
                 </li>
+
                 <li class="tocline">
                   <a href="#preferences"
                     ><span class="secno">7</span>
                     <span class="content">Preferences</span></a>                
                 </li>
 
+                <li class="tocline">
+                  <a href="#discovery"
+                    ><span class="secno">7</span>
+                    <span class="content">Discovery</span></a>                
+                </li>
 
                 <li class="tocline">
                   <a href="#considerations"
-                    ><span class="secno">8</span>
+                    ><span class="secno">9</span>
                     <span class="content">Considerations</span></a
                   >
                   <ol>
@@ -1237,8 +1243,6 @@
   <tr><td>sioc:has_reply</td><td>Replies and threads are discussed below</td></tr>
   <tr><td>Reverse meeting:message</td><td>Points from the chat channel to the message</td></tr>
 </table>
-
-            @@
           </section>
 
           <section id="replies" inlist="" rel="schema:hasPart" resource="#replies">
@@ -1365,7 +1369,6 @@ n4:this wf:message
         </figure>
 <p>When a thread membership link connects a thread and a message on different day files, the link
   is repeated in both files so that it can be followed either way. </p>
-            @@
 
           </section>
 
@@ -1483,8 +1486,8 @@ the content of the deletion message is something like "(message deleted)".</p>
                 and it is a single valid emoji should be used.
                 Otherwise an emoji can be made as one appropriate to the given subclass of Action,
                 as in the table above.</p>
-            @@
           </section>
+
           <section id="preferences" inlist="" rel="schema:hasPart" resource="#preferences">
             <h2 property="schema:name">Preferences</h2>
             <p>User preferences for chat allow many things
@@ -1521,17 +1524,21 @@ resource="#preferencesExample"
   typeof="fabio:Script"
 >
   <code>
-    :this
-    a meeting:LongChat;
-    dct:author c:i;
+    @prefix c1: <https://alice.solidcommunity.net/profile/card#>.
+    @prefix c2: <https://bob.inrupt.net/profile/card#>.
+    @prefix c3: <https://pod.charlie.example./profile/card#>.
+
+:this a meeting:LongChat;
+    dct:author c1:me;
     dct:created "2018-07-06T21:36:04Z"^^XML:dateTime;
     dct:title "Our Chat channel";
+
     wf:participation
         :id1530912972126, :id1538415256782, :id1538415459106 .
   
         :id1530912972126
             ic:dtstart "2018-07-06T21:36:12Z"^^XML:dateTime;
-            flow:participant c:me;
+            flow:participant c1:me;
             solid:expandImagesInline true;
             ui:backgroundColor "#c1d0c8".
   
@@ -1540,10 +1547,26 @@ resource="#preferencesExample"
             flow:participant c2:me;
             solid:expandImagesInline false;
             ui:backgroundColor "#ffccdd".
+
+        :id1538415509711
+            cal:dtstart "2018-10-01T17:38:29Z"^^xsd:dateTime;
+            wf:participant c3:me;
+            solid:colorizeByAuthor true;
+            solid:expandImagesInline true;
+            solid:inlineImageHeightEms 10;
+            solid:newestFirst true;
+            ui:backgroundColor "#c8f1f1".
   </code>
 </pre>
 </figure>    
-
+<p>In the exmample above, data in the main chat channel file, <code>$ROOT/index.ttl#this</code>,
+show that Alice made the chat, and has background color <code>#c1d0c8</code>;
+and Bob has turned off image expansion for his view of the chat, 
+and Charlie has turned on the image epansion with image height set to 10em,
+has their messages sorted with the latest at the top,
+and has then coloured by author.
+Apart from that they have left the default.
+</p>
 
  <table><tr><th>Preferences property</th><th>Effect</th><th>default</th></tr>
   <tr><td>solid:newestFirst</td><td>Messages are displayed with the most recent at the top of the display</td><td>False</td></tr>
@@ -1552,9 +1575,22 @@ resource="#preferencesExample"
   <tr><td>solid:inlineImageHeightEms</td><td>If images are expanded inline, then their height in Ems</td><td>Implementation dependent</td></tr>
   <tr><td>ui:backgroundColor</td><td>When messages are colors by the user sending them, this is the color for this user.</td><td>Implementation dependent</td></tr>
 </table>
+<p>@@ Add where the person-global and instance specific preference values stored.</p>
+          </section>
 
+          <section id="discovery">
+            <h2>Discovery</h2>
+            <p>The RDF class used to register an instance of a chat chanel
+               is <code>meeting:LongChat</code><div class="
+              The <a href="#bib-type-indexes">Type Indexes</a> may be used with that Class to create
+              to make a person note of the fact that the Chat to find it later, a similar note 
+              but shared with others in a community, or a public note, in which case 
+              systems displaying their profile will typically allow other to find the chat.
+            </p></p> To make a link to a chat, one does not have to be the owner of it,
+            or a participant.   The access control does not have to match: it isnpossible to
+            have a private link to a public resource and vice-versa.
 
-            @@
+              </p>
           </section>
 
           <section
@@ -1669,6 +1705,18 @@ resource="#preferencesExample"
                         >https://www.w3.org/TR/rdf-schema/</a
                       >
                     </dd>
+                    <dt id="bib-type-indexes">[TypeIndexes]</dt>
+                    <dd>
+                      <a
+                        href="https://solid.gihub.io/type-indexes/"
+                        rel="cito:citesAsAuthority"
+                        ><cite>Solid Type Indexes/cite></a
+                      >. Virginia Balseiro, Timea Turdean, Tim Berners-Lee, et al, Solid Organization, 2023 URL:
+                      <a href="https://solid.gihub.io/type-indexes/"
+                        >https://solid.gihub.io/type-indexes/</a
+                      >
+                    </dd>
+
                     <dt id="bib-rfc2119">[RFC2119]</dt>
                     <dd>
                       <a

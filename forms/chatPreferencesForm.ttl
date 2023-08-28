@@ -1,0 +1,22 @@
+
+  @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+  @prefix solid: <http://www.w3.org/ns/solid/terms#>.
+  @prefix ui: <http://www.w3.org/ns/ui#>.
+  @prefix : <#>.
+
+  :this
+    <http://purl.org/dc/elements/1.1/title> "Chat preferences" ;
+    a ui:Form ;
+    ui:part :colorizeByAuthor, :expandImagesInline, :newestFirst, :inlineImageHeightEms;
+    ui:parts ( :colorizeByAuthor :expandImagesInline :newestFirst :inlineImageHeightEms ).
+
+:colorizeByAuthor a ui:TristateField; ui:property solid:colorizeByAuthor;
+  ui:label "Color user input by user".
+:expandImagesInline a ui:TristateField; ui:property solid:expandImagesInline;
+  ui:label "Expand image URLs inline".
+:newestFirst a ui:TristateField; ui:property solid:newestFirst;
+  ui:label "Newest messages at the top".
+
+:inlineImageHeightEms a ui:IntegerField; ui:property solid:inlineImageHeightEms;
+  ui:label "Inline image height (lines)".
+
