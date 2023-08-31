@@ -216,7 +216,7 @@
               >
             </dd>
           </dl>
-
+          <!-- 
           <dl id="document-latest-version">
             <dt>Latest version</dt>
             <dd>
@@ -238,6 +238,7 @@
               >
             </dd>
           </dl>
+-->
 
           <dl id="document-editors">
             <dt>Editors</dt>
@@ -263,18 +264,6 @@
               >
             </dd>
 
-            <dd id="Timea-Turdean">
-              <span about="" rel="schema:editor schema:author"
-                ><span about="https://timea.solidcommunity.net/profile/card#me" typeof="schema:Person"
-                  ><a rel="schema:url" href="https://timea.solidcommunity.net/profile/card#me"
-                    ><span about="https://timea.solidcommunity.net/profile/card#me" property="schema:name"
-                      ><span property="schema:givenName">Timea</span>
-                      <span property="schema:familyName">Turdean</span></span
-                    ></a
-                  ></span
-                ></span
-              >
-            </dd>
           </dl>
 
           <dl id="document-contributors">
@@ -303,27 +292,19 @@
                 ></span
               >
             </dd>
-
-            <dd id="Tim-Berners-Lee">
-              <span about="" rel="schema:contributor"
-                ><span
-                  about="https://www.w3.org/People/Berners-Lee/card#i"
-                  typeof="schema:Person"
-                  ><a
-                    rel="schema:url"
-                    href="https://www.w3.org/People/Berners-Lee/"
-                    ><span
-                      about="https://www.w3.org/People/Berners-Lee/card#i"
-                      property="schema:name"
-                      ><span property="schema:givenName">Tim</span>
-                      <span property="schema:familyName"
-                        >Berners-Lee</span
-                      ></span
+            <dd id="Timea-Turdean">
+              <span about="" rel="schema:editor schema:author"
+                ><span about="https://timea.solidcommunity.net/profile/card#me" typeof="schema:Person"
+                  ><a rel="schema:url" href="https://timea.solidcommunity.net/profile/card#me"
+                    ><span about="https://timea.solidcommunity.net/profile/card#me" property="schema:name"
+                      ><span property="schema:givenName">Timea</span>
+                      <span property="schema:familyName">Turdean</span></span
                     ></a
                   ></span
                 ></span
               >
             </dd>
+
           </dl>
 
           <dl id="document-created">
@@ -338,7 +319,7 @@
               >
             </dd>
           </dl>
-
+          <!--
           <dl id="document-published">
             <dt>Published</dt>
             <dd>
@@ -351,7 +332,7 @@
               >
             </dd>
           </dl>
-
+ 
           <dl id="document-modified">
             <dt>Modified</dt>
             <dd>
@@ -364,7 +345,7 @@
               >
             </dd>
           </dl>
-
+-->
           <dl id="document-repository">
             <dt>Repository</dt>
             <dd>
@@ -399,7 +380,7 @@
                 href="http://purl.org/NET/rdflicense/MIT1.0"
                 rel="schema:license"
                 >MIT License</a
-              >
+              > but <b>all code snippets are in the public domain</b>, CC0.
             </dd>
           </dl>
 
@@ -440,17 +421,17 @@
                 <dt>Unique Identifier</dt>
                 <dd>
                   <a
-                    href="https://solidproject.org/TR/type-indexs#document-policy-offer"
+                    href="https://solidproject.org/TR/chat#document-policy-offer"
                     rel="odrl:uid"
-                    >https://solidproject.org/TR/type-indexs#document-policy-offer</a
+                    >https://solidproject.org/TR/chat#document-policy-offer</a
                   >
                 </dd>
                 <dt>Target</dt>
                 <dd>
                   <a
-                    href="https://solidproject.org/TR/type-indexs"
+                    href="https://solidproject.org/TR/chat"
                     rel="odrl:target"
-                    >https://solidproject.org/TR/type-indexs</a
+                    >https://solidproject.org/TR/chat</a
                   >
                 </dd>
                 <dt>Permission</dt>
@@ -782,30 +763,47 @@
                 </li>
 
                 <li class="tocline">
+                  <a href="#access-control"
+                    ><span class="secno">8</span>
+                    <span class="content">Access Control</span></a>                
+                </li>
+
+                <li class="tocline">
                   <a href="#discovery"
-                    ><span class="secno">7</span>
+                    ><span class="secno">9</span>
                     <span class="content">Discovery</span></a>                
                 </li>
 
                 <li class="tocline">
                   <a href="#considerations"
-                    ><span class="secno">9</span>
+                    ><span class="secno">10</span>
                     <span class="content">Considerations</span></a
                   >
                   <ol>
                     <li>
-                      <a class="tocxref" href="#privacy-considerations"
+                      <a class="tocxref" href="#security-considerations"
                         ><span class="secno">8.1</span>
+                        <span class="content">Security Considerations</span></a
+                      >
+                    </li>
+                    <li>
+                      <a class="tocxref" href="#privacy-considerations"
+                        ><span class="secno">8.2</span>
                         <span class="content">Privacy Considerations</span></a
                       >
                     </li>
                     <li>
-                      <a class="tocxref" href="#security-considerations"
-                        ><span class="secno">8.2</span>
-                        <span class="content">Security Considerations</span></a
+                      <a class="tocxref" href="#i18n-considerations"
+                        ><span class="secno">8.3</span>
+                        <span class="content">Internationalization Considerations</span></a
                       >
                     </li>
-
+                    <li>
+                      <a class="tocxref" href="#accy-considerations"
+                        ><span class="secno">8.4</span>
+                        <span class="content">Accessibility Considerations</span></a
+                      >
+                    </li>
                   </ol>
                 </li>
                 <li class="tocline">
@@ -862,8 +860,8 @@
                 <p>
                   A solid chat channel provides functionality similar to the functionality
                   of chat protocols like IRC channels and Matrix rooms, and like 
-                  platforms like Slack, WhatsApp chat, and so on.
-                  Anyone can host a chat on their pod, and invite others to join.
+                  platforms such as Slack, WhatsApp chat, and so on.
+                  Anyone can host a chat on their pod, and invite others to join (or not).
                   Those who are allowed to participate in the channel are given
                   Append mode access to a part of the pod where they can create 
                   new chat files and add messages to existing ones.
@@ -905,12 +903,11 @@
                   >WebID</dt>
                   <dd>
                     A <dfn id="webid">WebID</dfn> is a URI with an HTTP or HTTPS scheme which denotes an Agent
-                     (Person, Organization, Group, Device, etc.). For WebIDs with fragment identifiers (e.g. #me), 
+                     (Person, Organization, Group, autonomous software agent (bot), etc.). For WebIDs with fragment identifiers (e.g. #me), 
                      the URI without the fragment denotes the Profile Document.
-                      For WebIDs without fragment identifiers an HTTP request on the WebID MUST 
-                      return a 303 with a Location header URI referring to the Profile Document.
+                      For WebIDs without fragment identifiers an HTTP request on the WebID 
+                      returns a 303 with a Location header URI referring to the Profile Document.
                   </dd>
-                
                 </dl>
 
               </div>
@@ -1005,18 +1002,8 @@
                   non-normative. Everything else is normative.
                 </p>
 
-                <p>
-                  The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL
-                  NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and
-                  “OPTIONAL” are to be interpreted as described in
-                  <a href="https://tools.ietf.org/html/bcp14">BCP 14</a>
-                  [<cite><a class="bibref" href="#bib-rfc2119">RFC2119</a></cite
-                  >] [<cite
-                    ><a class="bibref" href="#bib-rfc8174">RFC8174</a></cite
-                  >] when, and only when, they appear in all capitals, as shown
-                  here.
-                </p>
-
+                <p>Notes in this document are shown like this:</p>
+                <p class="note">This is a note.</p>
                 <p>
                   Examples in this specification are introduced with the word "for example" or
                   are set apart from the normative text like this:
