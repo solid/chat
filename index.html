@@ -1041,7 +1041,7 @@
                  was not helpful, and the short chat should be dropped in favor of the long chat.
                  The LongChat implementation functionality included message deletion and editing, but not replies or threads.
                  It was used to store a pod-based reference copy of the Gitter chats around which a lot of the
-                 open source collaborative world revolved. This used a gateway which imported Solid chat from the Gitter API.
+                 open source collaborative world revolved. This used a gateway which imported Gitter chat into Solid using the Gitter API.
                  Other chat implementations at that time included Jackson Morgan's liqidChat.
                  In time Gitter abandoned their API and switched to the Matrix protocol, which is a common chat protocol.
                  The Solid community then switched the <a href="https://github.com/solid-contrib/gitter-solid">gateway</a> to the Matrix protocol.
@@ -1219,6 +1219,17 @@
   <tr><td>sioc:has_reply</td><td>Replies and threads are discussed below</td></tr>
   <tr><td>Reverse meeting:message</td><td>Points from the chat channel to the message</td></tr>
 </table>
+
+<p>When writing a chat message to a chat file, an interactive chat client must use an HTTP <code>PATCH</code>method.
+This is because the chat file may be being updated by other clients at the same time.
+It also has the semantics that the resource is automatically created if it does not previously exist.
+</p>
+<p>An interactive client must also watch the latest resource, the once corresponding to today's UTC date,
+  to see if it changes.  This is done using the Solid Live Update protocol. 
+  </p><p class="note">
+  Note that while in August 2023 this uses Web Sockets to
+  listen for changes, in future it may use other notification/watch/listen protocols
+</p>
           </section>
 
           <section id="replies" inlist="" rel="schema:hasPart" resource="#replies">
@@ -1231,7 +1242,7 @@
                   On small screens, a thread typically takes the whole screen. 
                   This document does not define the user interface choices the designers make.
                 </p>
-                <img style="width:80%" src="screenshots/screenshot-3.png" rel="schema:image" alt="The thread messages are to one side while replies are in line"/>
+                <img style="width:80%" src="screenshots/Screenshot-3.png" rel="schema:image" alt="The thread messages are to one side while replies are in line"/>
 
 
 
