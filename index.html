@@ -1549,7 +1549,7 @@ resource="#preferencesExample"
 >
   <code>
     @prefix c1: &lt;https://alice.solidcommunity.net/profile/card#>.
-    @prefix c2: &lt;https://bob.inrupt.net/profile/card#>.
+    @prefix c2: &lt;https://bob.example.net/profile/card#>.
     @prefix c3: &lt;https://pod.charlie.example./profile/card#>.
 
 :this a meeting:LongChat;
@@ -1637,14 +1637,15 @@ Apart from that they have left the default.
               >
               <h3 property="schema:name">Security considerations</h3>
               <div>
+                <p><strong>This section is normative.</strong></p>
                 <h4>Handling Rich Text</h4>
                 <p>
                   Whenever messages contain rich text in HTML form, or in markdown form which is converted
                   into HTML and either stored in a pod or displayed in a browser or both,
                   then great care must be taken to avoid injection attacks.  Any user-provided HTML 
-                  MUST be scrubbed for anything like embedded javascript URLs or the long list of
+                  must be scrubbed for anything like embedded javascript URLs or the long list of
                   vulnerabilities around injection of code into HTML.
-                  User-generated HTML content MUSt be scrubbed BOTH before being stored and also 
+                  User-generated HTML content must be scrubbed BOTH before being stored and also 
                   when read from a pod before it is displayed.
                 </p>
                 <h4>Impersonation by unscrupulous users</h4>
