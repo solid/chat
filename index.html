@@ -757,15 +757,15 @@
                 </li>
 
                 <li class="tocline">
-                  <a href="#preferences"
+                  <a href="#access-control"
                     ><span class="secno">7</span>
-                    <span class="content">Preferences</span></a>                
+                    <span class="content">Access Control</span></a>                
                 </li>
 
                 <li class="tocline">
-                  <a href="#access-control"
+                  <a href="#preferences"
                     ><span class="secno">8</span>
-                    <span class="content">Access Control</span></a>                
+                    <span class="content">Preferences</span></a>                
                 </li>
 
                 <li class="tocline">
@@ -782,25 +782,25 @@
                   <ol>
                     <li>
                       <a class="tocxref" href="#security-considerations"
-                        ><span class="secno">8.1</span>
+                        ><span class="secno">10.1</span>
                         <span class="content">Security Considerations</span></a
                       >
                     </li>
                     <li>
                       <a class="tocxref" href="#privacy-considerations"
-                        ><span class="secno">8.2</span>
+                        ><span class="secno">10.2</span>
                         <span class="content">Privacy Considerations</span></a
                       >
                     </li>
                     <li>
                       <a class="tocxref" href="#i18n-considerations"
-                        ><span class="secno">8.3</span>
+                        ><span class="secno">10.3</span>
                         <span class="content">Internationalization Considerations</span></a
                       >
                     </li>
                     <li>
                       <a class="tocxref" href="#accy-considerations"
-                        ><span class="secno">8.4</span>
+                        ><span class="secno">10.4</span>
                         <span class="content">Accessibility Considerations</span></a
                       >
                     </li>
@@ -1002,7 +1002,9 @@
                   non-normative. Everything else is normative.
                 </p>
 
-                <p>Notes in this document are shown like this:</p>
+                <p>All shapes <em>are</em> normative, though they open: they allow other data to be added.</p>
+
+                <p>Notes in this document are not normative, are shown like this:</p>
                 <p class="note">This is a note.</p>
                 <p>
                   Examples in this specification are introduced with the word "for example" or
@@ -1220,7 +1222,7 @@
   <tr><td>Reverse meeting:message</td><td>Points from the chat channel to the message</td></tr>
 </table>
 
-<p>When writing a chat message to a chat file, an interactive chat client must use an HTTP <code>PATCH</code>method.
+<p>When writing a chat message to a chat file, an interactive chat client must use an HTTP <code>PATCH</code> method.
 This is because the chat file may be being updated by other clients at the same time.
 It also has the semantics that the resource is automatically created if it does not previously exist.
 </p>
@@ -1355,7 +1357,7 @@ n4:this wf:message
           </pre>
         </figure>
 <p>When a thread membership link connects a thread and a message on different day files, the link
-  is repeated in both files so that it can be followed either way. </p>
+  is repeated in both resources so that it can be followed either way. </p>
 
           </section>
 
@@ -1421,7 +1423,7 @@ resource="#deletedexample"
   typeof="fabio:Script"
 >
   <code>
-@prefix c22: <https://alice.example.net/profile/card#>.
+@prefix c22: &lt;https://alice.example.net/profile/card#>.
 @prefix n6: <../../../index.ttl#>.
 
 :Msg1692883560076
@@ -1444,19 +1446,32 @@ n6:this wf:message :Msg1692883560076 .
 but does not know about <code>schema:dateDeleted</code> will do the right thing if
 the content of the deletion message is something like "(message deleted)".</p>
 
-<p>Edited messages may be further edited, as shown in the diagram.</p>
+<p>Edited messages may be further edited, as shown in the <a href="diagrams/SolidChatShapes.svg">diagram</a>.</p>
 <p>Edited messages may be deleted.  Deleted messaged may <strong>not</strong> be edited.</p>
             
           </section>
           <section id="actions" inlist="" rel="schema:hasPart" resource="#actions">
             <h2 property="schema:name">Actions</h2>
-            <p>A person responds with a social action (like "like") on an existing message
+            <p>A person responds with a social action (such as "like") on an existing message
               by writing the action into the same chat file as the message. </p>
               <pre class="example">
                 &lt;#action0876> schema:agent &lt;https://bob.example.com/profile/card#me> ;
                               a schema:AgreeAction ;
                               &lt;http://schema.org/target> &lt;#Msg1677678647433> .
+
+                &lt;#action0888> schema:agent &lt;https://alice.example.com/profile/card#me> ;
+                              a schema:AgreeAction ;
+                              scioc:contents "👍";
+                              &lt;http://schema.org/target> &lt;#Msg1677678647433> .
+
+                &lt;#action099> schema:agent &lt;https://charlie.example.com/profile/card#me> ;
+                              a schema:Action ;
+                              scioc:contents "⭐️";
+                              &lt;http://schema.org/target> &lt;#Msg1677678647433> .
+
               </pre>
+              <p>They must give their own webid as the agent.  Apps must <strong>not</strong> allow a different webid to be given.</p>
+
             <p>The schema ontology has a few standard forms of action.  Those should be converted into
               appropriate symbols or icons by the client.</p>
 
@@ -1471,8 +1486,30 @@ the content of the deletion message is something like "(message deleted)".</p>
               <p> 
                 When an application uses an emoji to represent the Action, then if the content is given,
                 and it is a single valid emoji should be used.
-                Otherwise an emoji can be made as one appropriate to the given subclass of Action,
+
+                An sender must <strong>not</strong> have both a subclass of  <code>schema:Action</code> and an
+                emoji which is inconsistent from the table.  A receiver must ignore any such inconsistent Action.
+                </p><p>
+                When no content is given, the receiver can pick an emoji
+                as appropriate to the given subclass of Action,
                 as in the table above.</p>
+          </section>
+
+          <section id="access-control" inlist="" rel="schema:hasPart" resource="#access-control">
+            <h2 property="schema:name">Access Control</h2>
+            <p>
+              The access control for a chat channel must be set to reflect the user's wishes.
+              One can recognize three roles: the owner of the channel who creates it,
+              the participants who are allowed to write to it, and the viewers who are allowed to read it.
+            </p>
+            <table><tr><th>Resource</th><th>Owner</th><th>Participant</th><th>Viewer</th></tr>
+              <tr><td>Channel file</td><td>RWAC</td><td>RWA</td><td>R</td></tr>
+              <tr><td>Root folder default</td><td>RWAC</td><td>RA</td><td>R</td></tr>
+              <tr><td>Day chat file</td><td>RWAC</td><td>RA</td><td>R</td></tr>
+            </table>
+            <p>Where RWAC means Read, Write, Append, Control.</p>
+            <p class="note">Note that the sets of agents in each role may in fact be suggested or
+              required by another app which creates the chat in a particular context, a larger system.</p>
           </section>
 
           <section id="preferences" inlist="" rel="schema:hasPart" resource="#preferences">
@@ -1511,9 +1548,9 @@ resource="#preferencesExample"
   typeof="fabio:Script"
 >
   <code>
-    @prefix c1: <https://alice.solidcommunity.net/profile/card#>.
-    @prefix c2: <https://bob.inrupt.net/profile/card#>.
-    @prefix c3: <https://pod.charlie.example./profile/card#>.
+    @prefix c1: &lt;https://alice.solidcommunity.net/profile/card#>.
+    @prefix c2: &lt;https://bob.inrupt.net/profile/card#>.
+    @prefix c3: &lt;https://pod.charlie.example./profile/card#>.
 
 :this a meeting:LongChat;
     dct:author c1:me;
@@ -1554,13 +1591,14 @@ has their messages sorted with the latest at the top,
 and has then coloured by author.
 Apart from that they have left the default.
 </p>
+<p>The default settings in the table below are not normative.</p>
 
- <table><tr><th>Preferences property</th><th>Effect</th><th>default</th></tr>
-  <tr><td>solid:newestFirst</td><td>Messages are displayed with the most recent at the top of the display</td><td>False</td></tr>
-  <tr><td>solid:colorizeByAuthor</td><td>Make the background color of each message be different for author. As specified by the author's preference, or by hashing their webid.</td></tr>
-  <tr><td>solid:expandImagesInline</td><td>Expand images inline</td><td>True</td></tr>
-  <tr><td>solid:inlineImageHeightEms</td><td>If images are expanded inline, then their height in Ems</td><td>Implementation dependent</td></tr>
-  <tr><td>ui:backgroundColor</td><td>When messages are colors by the user sending them, this is the color for this user.</td><td>Implementation dependent</td></tr>
+ <table><tr><th>Preferences property</th><th>Effect</th><th>possible default</th></tr>
+  <tr><td><code>solid:newestFirst</code></td><td>Messages are displayed with the most recent at the top of the display</td><td>False</td></tr>
+  <tr><td><code>solid:colorizeByAuthor</code></td><td>Make the background color of each message be different for author. As specified by the author's preference, or by hashing their webid.</td><td>True</td></tr>
+  <tr><td><code>solid:expandImagesInline</code></td><td>Expand images inline</td><td>True</td></tr>
+  <tr><td><code>solid:inlineImageHeightEms</code></td><td>If images are expanded inline, then their height in Ems</td><td>Implementation dependent</td></tr>
+  <tr><td><code>ui:backgroundColor</code></td><td>When messages are colors by the user sending them, this is the color for this user.</td><td>Implementation dependent</td></tr>
 </table>
 <p>@@ Add where the person-global and instance specific preference values stored.</p>
           </section>
@@ -1574,7 +1612,7 @@ Apart from that they have left the default.
               but shared with others in a community, or a public note, in which case 
               systems displaying their profile will typically allow other to find the chat.
             </p></p> To make a link to a chat, one does not have to be the owner of it,
-            or a participant.   The access control does not have to match: it isnpossible to
+            or a participant.   The access control does not have to match: it is possible to
             have a private link to a public resource and vice-versa.
 
               </p>
@@ -1592,7 +1630,7 @@ Apart from that they have left the default.
             </h2>
             <div datatype="rdf:HTML" property="schema:description">
               <section
-                id="privacy-considerations"
+                id="security-considerations"
                 inlist=""
                 rel="schema:hasPart"
                 resource="#security-considerations"
@@ -1611,26 +1649,36 @@ Apart from that they have left the default.
                 </p>
                 <h4>Impersonation by unscrupulous users</h4>
                 <p>
-                  It is left to each user to write their own webid as author of each message.
+                  It is left to each user to fill in their own webid as author of each message or action.
                   This is a question of trust, as anyone else in the group with access could
                   write an app to append a message with a different user's webId. 
-                  There are two ways in which this  is being addressed. One is that digital signature
+                  There are two ways in which this is being addressed. One is that digital signature
                   is used to provide assurance that the sender was indeed the one given in the message.
                   Another is work on server-side shape filtering in which the writer's identity (and the date) would
                   be checked or forced by the server.
                 </p>
               </div>
+
+              </section>
+              <section
+              id="privacy-considerations"
+              inlist=""
+              rel="schema:hasPart"
+              resource="#privacy-considerations"
+            >
+
               <h3 property="schema:name">Privacy considerations</h3>
               <div datatype="rdf:HTML" property="schema:description">
                   <p><em>This section is non-normative.</em></p>
                   <p>
                     Typically when a user joins a chat where they allowed to
                     contribute, then the chat app adds them to th list of participants.
-                    There participation is captured explicitly.
+                    There participation is captured automatically.
                     This is valuable to have the list of participants
                     but some users might like to opt out and just lurk.
                     On the other hand, other users might not want
-                    unregistered lurking to be possible.
+                    unregistered lurking to be possible, so a confirmation step could be made an option.
+                    
 
                   </p>
                   <p>One useful function of chat software is to capture the participants as a group
@@ -1638,11 +1686,52 @@ Apart from that they have left the default.
                   So to join a chat could end up involving you in other opportunities.
                   </p>
                 </div>
+
+              </section>
+              <section
+              id="i18n-considerations"
+              inlist=""
+              rel="schema:hasPart"
+              resource="#i18n-considerations"
+            >
+
+
                 <h3 property="schema:name">Internationalization considerations</h3>
-                <p>Should there be an option for laying out the chat with left and right reversed?</p>
+                <p>This section is non-normative.</p>
+
+                <p>This document has assumed left-to-right flow
+                  in all the examples, but clearly chat should also work in right-to-left or vertical cultures.
+                  Should there be an option for laying out the chat with left and right reversed?</p>
+
+                  <p>The Solid system allows a user to put in their profiles (ans/or preferences) their abilities
+                    at natural languages. This can be picked by the implemntation and used to
+                    select the language of the UI, and possibly
+                     even to offer to translate the messages of the chat.
+                  </p>
                 
               </section>
-            </div>
+
+            </section>
+            <section
+            id="accy-considerations"
+            inlist=""
+            rel="schema:hasPart"
+            resource="#accy-considerations"
+          >
+          <h3>Accessibility Considerations</h3>
+          <div>
+            <p>This section is non-normative.</p>
+            <p>As chat is a ubiquitous functionality in collaborative systems, in the world,
+              being able to partcipate in chat independent of ability or disability is of course essential.
+              A few points follow.</p>
+          <ul>
+            <li>All the usual teniques idea and the guidelines apply as any web ap</li>
+            <li>Chat is often used in a mobile context, so the usual mobile guidelines apply.</li>
+            <li>Completely separatei Implemntaions using for example conversational interfaces and/voice 
+              can be built and interoperate through this spec with different apps used by differently alble people</li>
+              <li>Implementing the user prefences for customization  of the user interface is an important for accessibility</li>
+          </ul>
+          </div>
           </section>
         
           <section
