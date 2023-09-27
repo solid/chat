@@ -845,6 +845,29 @@
             <div datatype="rdf:HTML" property="schema:description">
               <p><em>This section is non-normative.</em></p>
              
+              <p>
+                A solid chat channel provides functionality similar to the functionality
+                of chat protocols like IRC channels and Matrix rooms, and like 
+                platforms such as Slack, WhatsApp chat, and so on.
+                Anyone can host a chat on their pod, and invite others to join (or not).
+                Those who are allowed to participate in the channel are given
+                Append mode access to a part of the pod where they can create 
+                new chat files and add messages to existing ones.
+                Deletion and modification of messages are done not by changing 
+                the existing message, but by appending more information to note that 
+                it has been edited or deleted.
+              </p>
+              <p>Apart from the messages themselves, which are in dated directories (LDP containers)
+                there is preferences information controlling the display format and options
+                and a list of those participating.
+              </p>
+
+              <p>This specification is part of the work called 
+                for by the <a href="https://solidproject.solidcommunity.net/Verticals/Roadmap/state.ttl#Iss1595501681113">The Chat - Instant Messages</a> 
+                item in the <a href="https://solidproject.solidcommunity.net/Verticals/Roadmap/index.ttl#this">Solid Verticals Roadmap</a>.
+                It is a client-client specification, in that the pod server does not need to be aware of it at all.
+                The clients - Solid Apps - use it to make the chat data interoperable across different apps.
+                </p>
             </div>
 
             <section
@@ -857,22 +880,7 @@
               <h3 property="schema:name skos:prefLabel">Terminology</h3>
               <div datatype="rdf:HTML" property="schema:description">
                 <p><em>This section is non-normative.</em></p>
-                <p>
-                  A solid chat channel provides functionality similar to the functionality
-                  of chat protocols like IRC channels and Matrix rooms, and like 
-                  platforms such as Slack, WhatsApp chat, and so on.
-                  Anyone can host a chat on their pod, and invite others to join (or not).
-                  Those who are allowed to participate in the channel are given
-                  Append mode access to a part of the pod where they can create 
-                  new chat files and add messages to existing ones.
-                  Deletion and modification of messages are done not by changing 
-                  the existing message, but by appending more information to note that 
-                  it has been edited or deleted.
-                </p>
-                <p>Apart from the messages themselves, which are in dated directories (LDP containers)
-                  there is preferences information controlling the display format and options
-                  and a list of those participating.
-                </p>
+ 
 
                 <p>
                   This document uses terminology from the
