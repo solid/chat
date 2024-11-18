@@ -1196,7 +1196,7 @@
 <table><tr><th>Message Property</th><th>Use</th></tr>
   <tr><td>dct:created</td><td>Mandatory UTC datetime the message is sent.</td></tr>
   <tr><td>foaf:maker</td><td>Mandatory WebID of the message sender</td></tr>
-  <tr><td>sioc:contents</td><td>Mandatory unicode text of the message contents.</td></tr>
+  <tr><td>sioc:content</td><td>Mandatory unicode text of the message content.</td></tr>
   <tr><td>dct:isReplacedBy</td><td>Message editing is discussed below</td></tr>
   <tr><td>schema:dateDeleted</td><td>Message deletion is discussed below</td></tr>
   <tr><td>sioc:has_reply</td><td>Replies and threads are discussed below</td></tr>
@@ -1442,12 +1442,12 @@ the content of the deletion message is something like "(message deleted)".</p>
 
                 &lt;#action0888> schema:agent &lt;https://alice.example.com/profile/card#me> ;
                               a schema:AgreeAction ;
-                              scioc:contents "👍";
+                              scioc:content "👍";
                               &lt;http://schema.org/target> &lt;#Msg1677678647433> .
 
                 &lt;#action099> schema:agent &lt;https://charlie.example.com/profile/card#me> ;
                               a schema:Action ;
-                              scioc:contents "⭐️";
+                              scioc:content "⭐️";
                               &lt;http://schema.org/target> &lt;#Msg1677678647433> .
 
               </pre>
