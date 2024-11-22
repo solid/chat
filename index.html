@@ -1050,7 +1050,7 @@
             <p>
             A chat channel is all built inside a single folder (LDP Container) in a pod.
             Let us call the URI of that folder -- less its final '/' -- <code>$ROOT</code>. 
-            It could be say, <code>https://alice/example.org/Bob/OurChat</code>
+            It could be say, <code>https://alice.example.org/Bob/OurChat</code>
             Developers must never make assumptions about where a chat channel is
             stored as chats are used within other apps (such as issue trackers and meetings) 
             which create the container for them.
@@ -1129,7 +1129,7 @@
             </pre>
           </figure>
           <p class="note">Note that each message does not have an explicit type.  This is just to save storage.
-            It does have, in the chat file, a <code>meeting:message</code>link from the channel to the message.
+            It does have, in the chat file, a <code>meeting:message</code> link from the channel to the message.
             In the shapes, we use the class <code>schema:Message</code> but while there was also <code>sioc:Post</code>, nothing
             we could find seemed to capture Chat Message perfectly.
           </p>
@@ -1155,8 +1155,8 @@
 	];
 
   sh:property [
-		sh:path sioc:contents ;
-        sh:message "A chat message must have a contents.";
+		sh:path sioc:content ;
+        sh:message "A chat message must have a content.";
         sh:datatype xsd:string;
 
         sh:count 1;
@@ -1196,7 +1196,7 @@
 <table><tr><th>Message Property</th><th>Use</th></tr>
   <tr><td>dct:created</td><td>Mandatory UTC datetime the message is sent.</td></tr>
   <tr><td>foaf:maker</td><td>Mandatory WebID of the message sender</td></tr>
-  <tr><td>sioc:contents</td><td>Mandatory unicode text of the message contents.</td></tr>
+  <tr><td>sioc:content</td><td>Mandatory unicode text of the message content.</td></tr>
   <tr><td>dct:isReplacedBy</td><td>Message editing is discussed below</td></tr>
   <tr><td>schema:dateDeleted</td><td>Message deletion is discussed below</td></tr>
   <tr><td>sioc:has_reply</td><td>Replies and threads are discussed below</td></tr>
@@ -1207,7 +1207,7 @@
 This is because the chat file may be being updated by other clients at the same time.
 It also has the semantics that the resource is automatically created if it does not previously exist.
 </p>
-<p>An interactive client must also watch the latest resource, the once corresponding to today's UTC date,
+<p>An interactive client must also watch the latest resource, the one corresponding to today's UTC date,
   to see if it changes.  This is done using the Solid Live Update protocol. 
   </p><p class="note">
   Note that while in August 2023 this uses Web Sockets to
@@ -1219,7 +1219,7 @@ It also has the semantics that the resource is automatically created if it does 
             <h2 property="schema:name">Threads and Replies</h2>
 
             <p>Reply is a single message which is made in response to one original message.
-                A thread is a series of messages in response too the same original message.</p>
+                A thread is a series of messages in response to the same original message.</p>
                 <p class="note">In the screenshot below (of the Element matrix client running on Mac) the designer 
                   has chosen to show the thread messages to one side while the replies are in line.
                   On small screens, a thread typically takes the whole screen. 
@@ -1442,12 +1442,12 @@ the content of the deletion message is something like "(message deleted)".</p>
 
                 &lt;#action0888> schema:agent &lt;https://alice.example.com/profile/card#me> ;
                               a schema:AgreeAction ;
-                              scioc:contents "👍";
+                              scioc:content "👍";
                               &lt;http://schema.org/target> &lt;#Msg1677678647433> .
 
                 &lt;#action099> schema:agent &lt;https://charlie.example.com/profile/card#me> ;
                               a schema:Action ;
-                              scioc:contents "⭐️";
+                              scioc:content "⭐️";
                               &lt;http://schema.org/target> &lt;#Msg1677678647433> .
 
               </pre>
@@ -1564,7 +1564,7 @@ resource="#preferencesExample"
   </code>
 </pre>
 </figure>    
-<p>In the exmample above, data in the main chat channel file, <code>$ROOT/index.ttl#this</code>,
+<p>In the example above, data in the main chat channel file, <code>$ROOT/index.ttl#this</code>,
 show that Alice made the chat, and has background color <code>#c1d0c8</code>;
 and Bob has turned off image expansion for his view of the chat, 
 and Charlie has turned on the image epansion with image height set to 10em,
@@ -1586,7 +1586,7 @@ Apart from that they have left the default.
 
           <section id="discovery">
             <h2>Discovery</h2>
-            <p>The RDF class used to register an instance of a chat chanel
+            <p>The RDF class used to register an instance of a chat channel
                is <code>meeting:LongChat</code><div class="
               The <a href="#bib-type-indexes">Type Indexes</a> may be used with that Class to create
               a personal note of the Chat to find it later, a similar note 
@@ -1654,8 +1654,8 @@ Apart from that they have left the default.
                   <p><em>This section is non-normative.</em></p>
                   <p>
                     Typically when a user joins a chat where they allowed to
-                    contribute, then the chat app adds them to th list of participants.
-                    There participation is captured automatically.
+                    contribute, then the chat app adds them to the list of participants.
+                    Their participation is captured automatically.
                     This is valuable to have the list of participants
                     but some users might like to opt out and just lurk.
                     On the other hand, other users might not want
